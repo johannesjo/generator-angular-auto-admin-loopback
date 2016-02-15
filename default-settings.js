@@ -8,7 +8,7 @@ module.exports = {
     moduleName: 'aaal',
     pathOutputStyle: 'dasherize',
     routesFile: 'app/scripts/aaal/aaal-routes.js',
-    pathToModels: '../common/models',
+    pathToModels: './../common/models',
     fileExt: {
         script: '.js',
         tpl: '.html',

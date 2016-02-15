@@ -57,10 +57,45 @@ module.exports = yeoman.generators.Base.extend({
 
     appJs: function appJs()
     {
-        this.template('app/_aaal.js', this.appPath + this.dirs.app + '/_aaal.js');
-        this.template('app/_aaal.spec.js', this.appPath + this.dirs.app + '/_aaal.spec.js');
-        this.template('app/aaal-routes.js', this.appPath + this.routesFile);
-        this.template('app/aaal-routes.spec.js', this.appPath + this.dirs.app + '/aaal-routes.spec.js');
+        this.template('app/_aaal.js', this.dirs.app + '/_aaal.js');
+        this.template('app/_aaal.spec.js', this.dirs.app + '/_aaal.spec.js');
+        this.template('app/aaal-routes.js', this.routesFile);
+        this.template('app/aaal-routes.spec.js', this.dirs.app + '/aaal-routes.spec.js');
+    },
+
+    runCrudGenerator: function ()
+    {
+        var that = this;
+
+        function getModelData()
+        {
+            // read model definitions
+            var modelDefinitions = [];
+            var modelDir = that.pathToModels;
+            var files = fs.readdirSync(modelDir);
+            for (var i in files) {
+                var filename = files[i];
+                // check if json
+                if (filename.substr(filename.lastIndexOf('.') + 1) === 'json') {
+                    var modelDefinition = require(that.destinationPath(modelDir + '/' + filename));
+                    modelDefinitions.push(modelDefinition);
+                }
+            }
+            return modelDefinitions;
+        }
+
+        var modelDefinitions = getModelData();
+
+
+        for (var i = 0; i < modelDefinitions.length; i++) {
+            var model = modelDefinitions[i];
+            this.composeWith('aaal:main', {
+                    args: [model.name]
+                },
+                {
+                    local: require.resolve('./../main')
+                });
+        }
     },
 
     install: function packageFiles()
