@@ -1,0 +1,1 @@
+# generator aaal (angular auto admin loopback)
