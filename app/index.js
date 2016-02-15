@@ -6,8 +6,8 @@ var helper = require('../helper.js');
 var defaultSettings = require('../default-settings.js');
 var yeoman = require('yeoman-generator');
 var wiredep = require('wiredep');
-var chalk = require('chalk');
 var _s = require('underscore.string');
+var _ = require('lodash');
 
 
 module.exports = yeoman.generators.Base.extend({
@@ -37,18 +37,30 @@ module.exports = yeoman.generators.Base.extend({
 
     config: function ()
     {
-        this.config.defaults(defaultSettings);
-        this.moduleName = this.config.get('moduleName') || 'aaal';
-        this.baseState = this.config.get('baseState') || 'aaal';
+        // merge config with this context to make vars available
+        // otherwise set default settings if they don't exit yet
+        console.log(this.config.getAll());
+        var currentCfg = this.config.getAll();
+
+        if (currentCfg && !_.isEmpty(currentCfg)) {
+            _.merge(this, currentCfg);
+        } else {
+            // create a clone to avoid testing issues
+            var defaultCfg = _.cloneDeep(defaultSettings);
+            _.merge(defaultCfg, currentCfg);
+            _.merge(this, defaultCfg);
+            this.config.defaults(defaultCfg);
+
+        }
     },
 
 
     appJs: function appJs()
     {
-        this.template('app/_app.js', this.appPath + '/scripts/aaal/_app.js');
-        this.template('app/_app.spec.js', this.appPath + '/scripts/aaal/_app.spec.js');
-        this.template('app/routes.js', this.appPath + '/scripts/aaal/routes.js');
-        this.template('app/routes.spec.js', this.appPath + '/scripts/aaal/routes.spec.js');
+        this.template('app/_aaal.js', this.appPath + this.dirs.app + '/_aaal.js');
+        this.template('app/_aaal.spec.js', this.appPath + this.dirs.app + '/_aaal.spec.js');
+        this.template('app/aaal-routes.js', this.appPath + this.routesFile);
+        this.template('app/aaal-routes.spec.js', this.appPath + this.dirs.app + '/aaal-routes.spec.js');
     },
 
     install: function packageFiles()

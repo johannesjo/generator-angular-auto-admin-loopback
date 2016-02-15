@@ -18,16 +18,6 @@ module.exports = yeoman.generators.NamedBase.extend({
         // define global options
         this.option('useDefaults');
         this.option('openInEditor');
-        this.option('noParentFolder');
-        this.option('skipInject');
-
-        // define arguments
-        this.argument('targetFolder', {
-            type: String,
-            required: false,
-            description: 'The path of the parent module. Strips app and scripts folders'
-        });
-
 
         // set all the different name versions to be used in the templates
         this.setModuleNames(this.name);
@@ -139,7 +129,6 @@ module.exports = yeoman.generators.NamedBase.extend({
             this.targetFolder = this.stripModuleAndAppPaths(this.targetFolder);
             realTargetFolder = path.join(this.targetFolder);
         } else {
-
             if (this.curGenCfg.globalDir) {
                 realTargetFolder = this.curGenCfg.globalDir;
             } else {

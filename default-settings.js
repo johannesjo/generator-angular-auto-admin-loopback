@@ -7,7 +7,7 @@ module.exports = {
     baseState: 'private.',
     moduleName: 'aaal',
     pathOutputStyle: 'dasherize',
-    routesFile: 'app/scripts/aaal/routes.js',
+    routesFile: 'app/scripts/aaal/aaal-routes.js',
     pathToModels: '../common/models',
     fileExt: {
         script: '.js',
@@ -15,9 +15,9 @@ module.exports = {
         style: '.scss'
     },
     dirs: {
-        app: 'app/aaal',
-        appModules: 'scripts',
-        routes: 'aaal/routes'
+        app: 'app/scripts/aaal',
+        appModules: 'app/scripts',
+        routes: 'app/scripts/aaal/routes'
     },
     subGenerators: {
         controller: {

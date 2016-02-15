@@ -46,7 +46,7 @@ module.exports = ScriptBase.extend({
         createControllerFiles.bind(this)(defaults);
     },
 
-    writing: function (props)
+    writing: function ()
     {
         var that = this;
         var done = this.async();
@@ -58,7 +58,7 @@ module.exports = ScriptBase.extend({
                 // if no route-file exist
                 if (err) {
                     that.fs.copyTpl(
-                        that.templatePath('routes' + that.fileExt.script),
+                        that.templatePath('aaal-routes' + that.fileExt.script),
                         that.destinationPath(that.routesFile),
                         that
                     );
