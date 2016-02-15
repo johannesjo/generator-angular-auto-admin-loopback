@@ -8,11 +8,11 @@
  */
 
 angular.module('<%= moduleName %>')
-    .config(function ($stateProvider, $urlRouterProvider)
+    .config(function ($stateProvider)
     {
         'use strict';
 
-        $urlRouterProvider.otherwise('/');
+        var AAAL_BASE_STATE = '<%= baseState %>';
 
         $stateProvider
             /* STATES-NEEDLE - DO NOT REMOVE THIS */;

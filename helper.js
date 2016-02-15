@@ -29,7 +29,7 @@ exports.injectRoute = function (routesFile, name, url, tplUrl, ctrl, that)
     var template = tplUrl ? ',\n' + ind + ind + ind + ind + 'templateUrl: \'' + tplUrl + '\'' : '';
     ctrl = ctrl ? ',\n' + ind + ind + ind + ind + 'controller: \'' + ctrl + '\'' : '';
     var code = '' +
-        '.state(\'' + name + '\', {' +
+        '.state(AAAL_BASE_STATE + \'' + name + '\', {' +
         '\n' + ind + ind + ind + ind + 'url: \'' + url + '\'' +
         ctrl +
         template +

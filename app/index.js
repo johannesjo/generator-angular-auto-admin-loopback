@@ -39,6 +39,7 @@ module.exports = yeoman.generators.Base.extend({
     {
         this.config.defaults(defaultSettings);
         this.moduleName = this.config.get('moduleName') || 'aaal';
+        this.baseState = this.config.get('baseState') || 'aaal';
     },
 
 

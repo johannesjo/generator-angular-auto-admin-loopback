@@ -35,16 +35,12 @@ module.exports = yeoman.generators.NamedBase.extend({
         // set app name
         this.setAppVariables();
 
-
         // set sources root (for file-templates)
         var sourceRoot = '/templates/app';
         this.sourceRoot(path.join(__dirname, sourceRoot));
 
         // additional variables
         this.createdFiles = [];
-
-        // init here, although its double the trouble for now
-        //this.mergeConfig();
     },
 
     /**
@@ -62,8 +58,6 @@ module.exports = yeoman.generators.NamedBase.extend({
      */
     mergeConfig: function ()
     {
-        // get either default or from config
-
         // create a clone to avoid testing issues
         var defaultCfg = _.cloneDeep(defaultSettings);
         _.merge(defaultCfg, this.config.getAll());
@@ -96,6 +90,7 @@ module.exports = yeoman.generators.NamedBase.extend({
 
     /**
      * sets all the different name versions to be used in the templates
+     * @param name{string}
      */
     setModuleNames: function (name)
     {
@@ -111,7 +106,7 @@ module.exports = yeoman.generators.NamedBase.extend({
      * @param path{string}
      * @returns {string}
      */
-    cleanUpPath: function (path)
+    stripModuleAndAppPaths: function (path)
     {
         path = path
             .replace(this.dirs.appModules, '')
@@ -141,7 +136,7 @@ module.exports = yeoman.generators.NamedBase.extend({
 
         // allow creating sub-modules via reading and parsing the path argument
         if (this.targetFolder) {
-            this.targetFolder = this.cleanUpPath(this.targetFolder);
+            this.targetFolder = this.stripModuleAndAppPaths(this.targetFolder);
             realTargetFolder = path.join(this.targetFolder);
         } else {
 
@@ -175,7 +170,7 @@ module.exports = yeoman.generators.NamedBase.extend({
 
         // create file paths
         var inAppPath = path.join(this.dirs.appModules, realTargetFolder);
-        var generatorTargetPath = path.join(this.env.options.appPath, inAppPath);
+        var generatorTargetPath = path.join(inAppPath);
         var standardFileName = (this.curGenCfg.prefix || '') + this.formatNamePath(this.name) + (this.curGenCfg.suffix || '');
 
         // prepare template template and data
@@ -194,25 +189,6 @@ module.exports = yeoman.generators.NamedBase.extend({
         } else {
             // needs to be set for the _s.templates to work
             this.tplUrl = false;
-        }
-
-        // run create service or factory if option is given
-        if (this.createService === 'service' || this.createService === 'factory') {
-            // add service to queue
-            this.svcName = this.classedName;
-
-            // add service or factory to queue
-            filesToCreate.push({
-                tpl: this.createService + this.fileExt.script,
-                targetFileName: this.formatNamePath(this.name) + (this.subGenerators[this.createService].suffix || '') + this.fileExt.script,
-                gen: this.createService
-            });
-            // add service test to queue
-            filesToCreate.push({
-                tpl: this.createService + this.testSuffix + this.fileExt.script,
-                targetFileName: this.formatNamePath(this.name) + (this.subGenerators[this.createService].suffix || '') + this.testSuffix + this.fileExt.script,
-                gen: this.createService
-            });
         }
 
         if (!this.skipMainFiles) {

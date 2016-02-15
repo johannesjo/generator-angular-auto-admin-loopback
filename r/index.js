@@ -4,7 +4,6 @@ var helper = require('../helper.js');
 var path = require('path');
 var fs = require('fs');
 var chalk = require('chalk');
-var defaultSettings = require('../default-settings.js');
 
 module.exports = ScriptBase.extend({
     initializing: function ()
@@ -15,22 +14,8 @@ module.exports = ScriptBase.extend({
         // the state name is the argument
         this.stateName = this.name;
 
-        // create path string from name
-        var PARENT_STATES_REG_EXP = new RegExp('([^\\.]+)\\.', 'g');
-        var parentStates = this.name.match(PARENT_STATES_REG_EXP);
-        var parentStatePath = '';
-        if (parentStates) {
-            for (var i = 0; i < parentStates.length; i++) {
-                var stateStr = parentStates[i].replace('.', '');
-                stateStr = this.formatNamePath(stateStr);
-                parentStatePath = path.join(parentStatePath, stateStr);
-            }
-        }
-
-        // set name to base-name only to work with the usual generators
-        this.name = this.name.replace(PARENT_STATES_REG_EXP, '');
         // instead use target folder to set the path
-        this.targetFolder = path.join(this.dirs.routes, parentStatePath);
+        this.targetFolder = path.join(this.dirs.routes);
 
         // names need to be reset
         this.setModuleNames(this.name);
@@ -58,46 +43,7 @@ module.exports = ScriptBase.extend({
             done();
         }
 
-        if (this.options.useDefaults || this.config.get('alwaysSkipDialog')) {
-            createControllerFiles.bind(this)(defaults);
-        } else {
-            this.prompt(
-                [
-                    {
-                        type: 'confirm',
-                        name: 'createCtrl',
-                        message: 'Would you like to create a controller for the route?',
-                        default: defaults.createCtrl
-                    },
-                    {
-                        type: 'confirm',
-                        name: 'createTemplate',
-                        message: 'Would you like to create a html-template-file and a scss-file for the route?',
-                        default: defaults.createTemplate
-                    },
-                    {
-                        type: 'list',
-                        name: 'createService',
-                        message: 'Would you like to create a service or factory for the route?',
-                        default: defaults.createService,
-                        choices: [
-                            {
-                                name: 'No',
-                                value: false
-                            },
-                            {
-                                name: 'a service',
-                                value: 'service'
-                            },
-                            {
-                                name: 'a factory',
-                                value: 'service'
-                            }
-                        ]
-                    }
-                ],
-                createControllerFiles.bind(this));
-        }
+        createControllerFiles.bind(this)(defaults);
     },
 
     writing: function (props)

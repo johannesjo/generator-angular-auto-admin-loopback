@@ -1,10 +1,10 @@
 module.exports = {
     testSuffix: '.spec',
     testPassOnDefault: true,
-    alwaysSkipDialog: false,
     stylePrefix: '_',
     editorCommand: 'idea',
     uiRouter: true,
+    baseState: 'private.',
     moduleName: 'aaal',
     pathOutputStyle: 'dasherize',
     routesFile: 'app/scripts/aaal/routes.js',
