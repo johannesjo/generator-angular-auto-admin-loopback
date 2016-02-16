@@ -20,13 +20,19 @@ module.exports = {
     createCrudFiles: function (generator, model)
     {
         generator.composeWith('aaal:overview', {
-                args: [model.name]
+                args: [model.name],
+                options: {
+                    model: model
+                }
             },
             {
                 local: require.resolve('./overview')
             });
         generator.composeWith('aaal:edit', {
-                args: [model.name]
+                args: [model.name],
+                options: {
+                    model: model
+                }
             },
             {
                 local: require.resolve('./edit')

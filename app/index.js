@@ -76,7 +76,7 @@ module.exports = yeoman.generators.Base.extend({
         {
             //save configuration
             this.config.save();
-            this.spawnCommand('bower', ['install', 'angular-ui-router', 'ng-fab-form', 'angular-formly', 'angular-formly-templates-bootstrap', '--save']);
+            this.spawnCommand('bower', ['install', 'angular-ui-router', 'ng-fab-form', 'angular-formly', 'angular-formly-templates-bootstrap', 'ngTable', '--save']);
         });
     },
     postRun: function ()
