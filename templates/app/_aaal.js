@@ -8,4 +8,8 @@
  */
 'use strict';
 
-angular.module('<%= moduleName %>', []);
+angular.module('<%= moduleName %>', [
+    'ngFabForm',
+    'formly',
+    'formlyBootstrap'
+]);
