@@ -1,8 +1,7 @@
 var fs = require('fs');
 
-module.exports = function (generator, modelDir)
-{
-    function getModelData()
+module.exports = {
+    getModelData: function (generator, modelDir)
     {
         // read model definitions
         var modelDefinitions = [];
@@ -16,19 +15,28 @@ module.exports = function (generator, modelDir)
             }
         }
         return modelDefinitions;
-    }
+    },
 
-    var modelDefinitions = getModelData();
+    createFiles: function (generator, modelDir)
+    {
+        var modelDefinitions = this.getModelData(generator, modelDir);
 
-    for (var i = 0; i < modelDefinitions.length; i++) {
-        var model = modelDefinitions[i];
-        console.log(model);
+        for (var i = 0; i < modelDefinitions.length; i++) {
+            var model = modelDefinitions[i];
+            console.log(model);
 
-        generator.composeWith('aaal:main', {
-                args: [model.name]
-            },
-            {
-                local: require.resolve('./main')
-            });
+            generator.composeWith('aaal:overview', {
+                    args: [model.name]
+                },
+                {
+                    local: require.resolve('./overview')
+                });
+            generator.composeWith('aaal:edit', {
+                    args: [model.name]
+                },
+                {
+                    local: require.resolve('./edit')
+                });
+        }
     }
 };

@@ -67,7 +67,7 @@ module.exports = yeoman.generators.Base.extend({
 
     runCrudGenerator: function ()
     {
-        crudGen(this, this.pathToModels);
+        crudGen.createFiles(this, this.pathToModels);
     },
 
     install: function packageFiles()
