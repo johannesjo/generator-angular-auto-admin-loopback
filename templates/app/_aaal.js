@@ -11,5 +11,6 @@
 angular.module('<%= moduleName %>', [
     'ngFabForm',
     'formly',
-    'formlyBootstrap'
+    'formlyBootstrap',
+    'ui.router'
 ]);
