@@ -1,3 +1,50 @@
 <div class="page-<%=dashedName %>">
-    <p>This is the <%= classedName %> view</p>
+
+    <button type="button"
+            ng-click="addRandomItem(row)"
+            class="btn btn-sm btn-success">
+        <i class="glyphicon glyphicon-plus">
+        </i> Add random item
+    </button>
+
+    <table st-table="displayedCollection"
+           st-safe-src="rowCollection"
+           class="table table-striped">
+        <thead>
+            <tr>
+                <th st-sort="id">id</th>
+                <th st-sort="title">title</th>
+                <th st-sort="createdAt"
+                    ng-if="createdAt">createdAt
+                </th>
+                <th st-sort="updatedAt"
+                    ng-if="updatedAt">updatedAt
+                </th>
+                <th>Actions</th>
+            </tr>
+            <tr>
+                <th colspan="5">
+                    <input st-search=""
+                           class="form-control"
+                           placeholder="global search ..."
+                           type="text"/>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="row in displayedCollection">
+                <td>{{row.id}}</td>
+                <td>{{row.title}}</td>
+                <td ng-if="createdAt">{{row.createdAt|date}}</td>
+                <td ng-if="updatedAt">{{row.updatedAt|date}}</td>
+                <td>
+                    <button type="button"
+                            ng-click="removeItem(row)"
+                            class="btn btn-sm btn-danger">
+                        <i class="glyphicon glyphicon-remove-circle"></i>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>
