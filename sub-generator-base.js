@@ -124,6 +124,8 @@ module.exports = yeoman.generators.NamedBase.extend({
     formatNamePath: function (name)
     {
         var style = this.config.get('pathOutputStyle') || 'dasherize';
+        // first letter to lowercase to prevent issues with dasherize
+        name = name.charAt(0).toUpperCase() + name.slice(1);
         return _s[style](name);
     },
 
