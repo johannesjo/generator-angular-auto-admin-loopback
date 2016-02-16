@@ -22,7 +22,7 @@ module.exports = ScriptBase.extend({
 
         var routeUrl = '/' + this.formatNamePath(this.name) + '/' + this.formatNamePath(this.subGenCfg.subRoute);
         var tplUrl = this.tplUrl;
-        var ctrl = !!this.createController && this.classedName + (this.subGenCfg.nameSuffix || '');
+        var ctrl = this.classedName + (this.subGenCfg.nameSuffix || '');
 
         helper.injectRoute(
             this.routesFile,

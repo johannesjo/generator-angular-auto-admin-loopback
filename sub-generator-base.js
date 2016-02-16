@@ -110,7 +110,7 @@ module.exports = yeoman.generators.NamedBase.extend({
     stripModuleAndAppPaths: function (path)
     {
         path = path
-            .replace(this.dirs.appModules, '')
+            .replace(this.dirs.basePath, '')
             .replace(this.dirs.app, '');
         return path;
     },
@@ -169,8 +169,8 @@ module.exports = yeoman.generators.NamedBase.extend({
         var filesToCreate = [];
 
         // create file paths
-        var inAppPath = path.join(this.dirs.appModules, realTargetFolder);
-        var generatorTargetPath = path.join(inAppPath);
+        var inAppPath = path.join(this.dirs.basePath, realTargetFolder);
+        var generatorTargetPath = path.join(this.dirs.app, inAppPath);
         var standardFileName = (this.curGenCfg.prefix || '') + this.formatNamePath(this.name) + (this.curGenCfg.suffix || '');
 
         // prepare template template and data

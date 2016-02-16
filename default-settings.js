@@ -17,9 +17,9 @@ module.exports = {
         style: '.scss'
     },
     dirs: {
-        app: 'app/scripts/aaal',
-        appModules: 'app/scripts',
-        routes: 'app/scripts/aaal/routes'
+        app: 'app',
+        basePath: 'scripts/aaal',
+        routes: 'routes'
     },
     subGenerators: {
         overview: {
