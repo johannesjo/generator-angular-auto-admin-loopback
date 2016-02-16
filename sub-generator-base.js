@@ -39,6 +39,18 @@ module.exports = yeoman.generators.NamedBase.extend({
     {
         this.mergeConfig();
         this.overWriteTplPathIfSet();
+
+        // set current subgen
+        this.subGenCfg = this.subGenerators[this.templateName];
+        // the state name is the argument
+        this.stateName = this.name + this.subGenCfg.stateSuffix;
+        // instead use target folder to set the path
+        this.targetFolder = path.join(this.dirs.routes);
+        // names need to be reset
+        this.setModuleNames(this.name);
+
+        // create overview files
+        this.generateSourceAndTest(this.templateName);
     },
 
     /**
@@ -162,23 +174,18 @@ module.exports = yeoman.generators.NamedBase.extend({
         var standardFileName = (this.curGenCfg.prefix || '') + this.formatNamePath(this.name) + (this.curGenCfg.suffix || '');
 
         // prepare template template and data
-        if (this.createTemplate) {
-            this.tplUrl = path.join(inAppPath, standardFileName + this.fileExt.tpl)
-                // windows fix for url path
-                .replace(/\\/g, '/');
+        this.tplUrl = path.join(inAppPath, standardFileName + this.fileExt.tpl)
+            // windows fix for url path
+            .replace(/\\/g, '/');
+        filesToCreate.push({
+            tpl: this.templateName + this.fileExt.tpl,
+            targetFileName: standardFileName + this.fileExt.tpl
+        });
+        if (this.addStyleFiles === true) {
             filesToCreate.push({
-                tpl: this.templateName + this.fileExt.tpl,
-                targetFileName: standardFileName + this.fileExt.tpl
+                tpl: this.stylePrefix + this.templateName + this.fileExt.style,
+                targetFileName: this.stylePrefix + standardFileName + this.fileExt.style
             });
-            if (this.addStyleFiles === true) {
-                filesToCreate.push({
-                    tpl: this.stylePrefix + this.templateName + this.fileExt.style,
-                    targetFileName: this.stylePrefix + standardFileName + this.fileExt.style
-                });
-            }
-        } else {
-            // needs to be set for the _s.templates to work
-            this.tplUrl = false;
         }
 
         // add main file to queue
@@ -290,6 +297,27 @@ module.exports = yeoman.generators.NamedBase.extend({
         if (!this.options.skipInject) {
             this.spawnCommand('gulp', ['injectAll']);
         }
+    },
+    install: function ()
+    {
+        // SOMEWHAT HACKY, but not possible otherwise to run
+        // after file creation due to how the run queue works
+        // @see http://yeoman.io/authoring/running-context.html
+
+        this.log.writeln(chalk.yellow('injecting state into ' + this.routesFile));
+
+        var routeUrl = '/' + this.formatNamePath(this.name) + '/' + this.formatNamePath(this.subGenCfg.subRoute);
+        var tplUrl = this.tplUrl;
+        var ctrl = !!this.createController && this.classedName + (this.subGenCfg.nameSuffix || '');
+
+        helper.injectRoute(
+            this.routesFile,
+            this.stateName,
+            routeUrl,
+            tplUrl,
+            ctrl,
+            this
+        );
     }
 });
 

@@ -24,12 +24,14 @@ module.exports = {
     subGenerators: {
         overview: {
             stateSuffix: 'List',
+            subRoute: 'list',
             suffix: '-list-c',
             nameSuffix: 'ListCtrl',
             createDirectory: true
         },
         edit: {
             stateSuffix: 'Edit',
+            subRoute: 'edit',
             suffix: '-edit-c',
             nameSuffix: 'EditCtrl',
             createDirectory: true
