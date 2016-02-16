@@ -22,10 +22,16 @@ module.exports = {
         routes: 'app/scripts/aaal/routes'
     },
     subGenerators: {
-        controller: {
-            suffix: '-c',
-            nameSuffix: 'Ctrl',
-            globalDir: '',
+        overview: {
+            stateSuffix: 'List',
+            suffix: '-list-c',
+            nameSuffix: 'ListCtrl',
+            createDirectory: true
+        },
+        edit: {
+            stateSuffix: 'Edit',
+            suffix: '-edit-c',
+            nameSuffix: 'EditCtrl',
             createDirectory: true
         }
     }

@@ -8,15 +8,15 @@ var chalk = require('chalk');
 module.exports = ScriptBase.extend({
     initializing: function ()
     {
+        this.templateName = 'overview';
         // needs to be called manually
         this.init();
 
+        this.subGenCfg = this.subGenerators[this.templateName];
         // the state name is the argument
-        this.stateName = this.name;
-
+        this.stateName = this.name + this.subGenCfg.stateSuffix;
         // instead use target folder to set the path
         this.targetFolder = path.join(this.dirs.routes);
-
         // names need to be reset
         this.setModuleNames(this.name);
     },
@@ -27,8 +27,8 @@ module.exports = ScriptBase.extend({
         this.createTemplate = true;
         this.createController = true;
 
-        // create controller files
-        this.generateSourceAndTest('controller');
+        // create overview files
+        this.generateSourceAndTest('overview');
     },
 
     writing: function ()
@@ -70,9 +70,9 @@ module.exports = ScriptBase.extend({
         if (this.injectIntoRoutesFile) {
             this.log.writeln(chalk.yellow('injecting state into ' + this.routesFile));
 
-            var routeUrl = '/' + this.formatNamePath(this.name),
+            var routeUrl = '/' + this.formatNamePath(this.name) + '/' + this.formatNamePath(this.subGenCfg.stateSuffix),
                 tplUrl = this.tplUrl,
-                ctrl = !!this.createController && this.classedName + (this.subGenerators.controller.nameSuffix || '');
+                ctrl = !!this.createController && this.classedName + (this.subGenCfg.nameSuffix || '');
 
             helper.injectRoute(
                 this.routesFile,
