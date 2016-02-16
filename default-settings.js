@@ -19,7 +19,8 @@ module.exports = {
     dirs: {
         app: 'app',
         basePath: 'scripts/aaal',
-        routes: 'routes'
+        routes: 'routes',
+        components: 'components'
     },
     subGenerators: {
         overview: {
