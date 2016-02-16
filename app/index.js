@@ -58,9 +58,12 @@ module.exports = yeoman.generators.Base.extend({
     appJs: function appJs()
     {
         this.template('app/_aaal.js', this.dirs.app + '/_aaal.js');
-        this.template('app/_aaal.spec.js', this.dirs.app + '/_aaal.spec.js');
         this.template('app/aaal-routes.js', this.routesFile);
-        this.template('app/aaal-routes.spec.js', this.dirs.app + '/aaal-routes.spec.js');
+
+        if (this.addTestFiles === true) {
+            this.template('app/_aaal.spec.js', this.dirs.app + '/_aaal.spec.js');
+            this.template('app/aaal-routes.spec.js', this.dirs.app + '/aaal-routes.spec.js');
+        }
     },
 
     runCrudGenerator: function ()

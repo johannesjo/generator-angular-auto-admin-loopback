@@ -1,4 +1,6 @@
 module.exports = {
+    addTestFiles: true,
+    addStyleFiles: true,
     testSuffix: '.spec',
     testPassOnDefault: true,
     stylePrefix: '_',

@@ -16,7 +16,6 @@ module.exports = yeoman.generators.NamedBase.extend({
         yeoman.generators.NamedBase.apply(this, arguments);
 
         // define global options
-        this.option('useDefaults');
         this.option('openInEditor');
 
         // set all the different name versions to be used in the templates
@@ -154,8 +153,8 @@ module.exports = yeoman.generators.NamedBase.extend({
         this.templateName = templateName;
         this.curGenCfg = this.subGenerators[templateName];
 
-        var realTargetFolder = this.defineTargetFolder(),
-            filesToCreate = [];
+        var realTargetFolder = this.defineTargetFolder();
+        var filesToCreate = [];
 
         // create file paths
         var inAppPath = path.join(this.dirs.appModules, realTargetFolder);
@@ -171,23 +170,25 @@ module.exports = yeoman.generators.NamedBase.extend({
                 tpl: this.templateName + this.fileExt.tpl,
                 targetFileName: standardFileName + this.fileExt.tpl
             });
-            filesToCreate.push({
-                tpl: this.stylePrefix + this.templateName + this.fileExt.style,
-                targetFileName: this.stylePrefix + standardFileName + this.fileExt.style
-            });
+            if (this.addStyleFiles === true) {
+                filesToCreate.push({
+                    tpl: this.stylePrefix + this.templateName + this.fileExt.style,
+                    targetFileName: this.stylePrefix + standardFileName + this.fileExt.style
+                });
+            }
         } else {
             // needs to be set for the _s.templates to work
             this.tplUrl = false;
         }
 
-        if (!this.skipMainFiles) {
-            // add main file to queue
-            filesToCreate.push({
-                tpl: templateName + this.fileExt.script,
-                targetFileName: standardFileName + this.fileExt.script
-            });
+        // add main file to queue
+        filesToCreate.push({
+            tpl: templateName + this.fileExt.script,
+            targetFileName: standardFileName + this.fileExt.script
+        });
 
-            // add test file to queue
+        // add test file to queue
+        if (this.addTestFiles === true) {
             filesToCreate.push({
                 tpl: templateName + this.testSuffix + this.fileExt.script,
                 targetFileName: standardFileName + this.testSuffix + this.fileExt.script
