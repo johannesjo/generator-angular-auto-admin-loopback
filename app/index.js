@@ -8,7 +8,7 @@ var yeoman = require('yeoman-generator');
 var wiredep = require('wiredep');
 var _s = require('underscore.string');
 var _ = require('lodash');
-
+var crudGen = require('../crud-gen');
 
 module.exports = yeoman.generators.Base.extend({
     constructor: function ()
@@ -39,7 +39,6 @@ module.exports = yeoman.generators.Base.extend({
     {
         // merge config with this context to make vars available
         // otherwise set default settings if they don't exit yet
-        console.log(this.config.getAll());
         var currentCfg = this.config.getAll();
 
         if (currentCfg && !_.isEmpty(currentCfg)) {
@@ -68,37 +67,7 @@ module.exports = yeoman.generators.Base.extend({
 
     runCrudGenerator: function ()
     {
-        var that = this;
-
-        function getModelData()
-        {
-            // read model definitions
-            var modelDefinitions = [];
-            var modelDir = that.pathToModels;
-            var files = fs.readdirSync(modelDir);
-            for (var i in files) {
-                var filename = files[i];
-                // check if json
-                if (filename.substr(filename.lastIndexOf('.') + 1) === 'json') {
-                    var modelDefinition = require(that.destinationPath(modelDir + '/' + filename));
-                    modelDefinitions.push(modelDefinition);
-                }
-            }
-            return modelDefinitions;
-        }
-
-        var modelDefinitions = getModelData();
-
-
-        for (var i = 0; i < modelDefinitions.length; i++) {
-            var model = modelDefinitions[i];
-            this.composeWith('aaal:main', {
-                    args: [model.name]
-                },
-                {
-                    local: require.resolve('./../main')
-                });
-        }
+        crudGen(this, this.pathToModels);
     },
 
     install: function packageFiles()
