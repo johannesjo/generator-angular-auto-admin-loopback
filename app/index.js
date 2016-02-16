@@ -70,13 +70,20 @@ module.exports = yeoman.generators.Base.extend({
         crudGen.createFiles(this, this.pathToModels);
     },
 
+    createLbServices: function ()
+    {
+        if (this.slcServiceCommandArgs) {
+            this.spawnCommand('lb-ng', this.slcServiceCommandArgs);
+        }
+    },
+
     install: function packageFiles()
     {
         this.on('end', function ()
         {
             //save configuration
             this.config.save();
-            this.spawnCommand('bower', ['install', 'angular-ui-router', 'ng-fab-form', 'angular-formly', 'angular-formly-templates-bootstrap', 'ngTable', '--save']);
+            this.spawnCommand('bower', ['install', 'angular-ui-router', 'ng-fab-form', 'angular-formly', 'angular-formly-templates-bootstrap', 'ng-table', '--save']);
         });
     },
     postRun: function ()
