@@ -23,27 +23,12 @@ module.exports = ScriptBase.extend({
 
     prompting: function ()
     {
-        var done = this.async();
-        var defaults = {
-            createTemplate: true,
-            createService: false,
-            createCtrl: true
-        };
+        // set context vars
+        this.createTemplate = true;
+        this.createController = true;
 
-        function createControllerFiles(props)
-        {
-            // set context vars
-            this.createService = props.createService;
-            this.createTemplate = props.createTemplate;
-            this.skipMainFiles = !props.createCtrl;
-            this.createController = props.createCtrl;
-
-            // create controller files
-            this.generateSourceAndTest('controller');
-            done();
-        }
-
-        createControllerFiles.bind(this)(defaults);
+        // create controller files
+        this.generateSourceAndTest('controller');
     },
 
     writing: function ()
