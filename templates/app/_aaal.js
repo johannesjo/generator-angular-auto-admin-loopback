@@ -13,6 +13,6 @@ angular.module('<%= moduleName %>', [
     'formly',
     'formlyBootstrap',
     'ui.router',
-    'ngTable',
+    'smart-table',
     'lbServices'
 ]);
