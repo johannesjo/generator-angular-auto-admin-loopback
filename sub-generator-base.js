@@ -299,27 +299,6 @@ module.exports = yeoman.generators.NamedBase.extend({
         if (!this.options.skipInject) {
             this.spawnCommand('gulp', ['injectAll']);
         }
-    },
-    install: function ()
-    {
-        // SOMEWHAT HACKY, but not possible otherwise to run
-        // after file creation due to how the run queue works
-        // @see http://yeoman.io/authoring/running-context.html
-
-        this.log.writeln(chalk.yellow('injecting state into ' + this.routesFile));
-
-        var routeUrl = '/' + this.formatNamePath(this.name) + '/' + this.formatNamePath(this.subGenCfg.subRoute);
-        var tplUrl = this.tplUrl;
-        var ctrl = !!this.createController && this.classedName + (this.subGenCfg.nameSuffix || '');
-
-        helper.injectRoute(
-            this.routesFile,
-            this.stateName,
-            routeUrl,
-            tplUrl,
-            ctrl,
-            this
-        );
     }
 });
 
