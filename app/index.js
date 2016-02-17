@@ -90,10 +90,12 @@ module.exports = yeoman.generators.Base.extend({
     install: function packageFiles() {
         var requiredComponents = [
             'angular-ui-router',
-            'ng-fab-form', 'angular-formly',
+            'ng-fab-form',
+            'angular-formly',
             'angular-formly-templates-bootstrap',
             'angular-smart-table',
-            'ui.bootstrap'
+            'ui.bootstrap',
+            'angular-ui-tinymce'
         ];
         requiredComponents.unshift('install');
         requiredComponents.push('--save');

@@ -1,5 +1,4 @@
 var helper = require('./helper');
-var crudGen = require('./crud-gen');
 var fs = require('fs');
 
 function getModelData(modelDir) {
@@ -28,12 +27,15 @@ function convertModelToFormly(model) {
         };
 
         formlyField.key = key;
-        tplOpts.label = key;
 
-        if (field.type === 'string' || field.type === 'number') {
+        // types
+        if (field.formlyType) {
+            formlyField.type = field.formlyType;
+        }
+        else if (field.type === 'string' || field.type === 'number') {
             formlyField.type = 'input';
         }
-        if (field.type === 'date') {
+        else if (field.type === 'date') {
             formlyField.type = 'input';
 
             //formlyField.type = 'datepicker';
@@ -41,6 +43,13 @@ function convertModelToFormly(model) {
             //tplOpts.type = 'date';
             //tplOpts.datepickerOptions = {};
         }
+
+        // tpl opts
+        if (field.formlyOpts) {
+            tplOpts = field.formlyOpts;
+        }
+
+        tplOpts.label = key;
         if (field.required) {
             tplOpts.required = true;
         }
@@ -55,8 +64,5 @@ function convertModelToFormly(model) {
 var modelData = getModelData('/home/johannes/www/angular-auto-admin-loopback/common/models');
 var formlyData = convertModelToFormly(modelData[0]);
 
-
-//console.log(modelData);
-console.log(formlyData);
 
 module.exports = convertModelToFormly;

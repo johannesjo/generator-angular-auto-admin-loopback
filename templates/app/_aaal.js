@@ -14,5 +14,6 @@ angular.module('<%= moduleName %>', [
     'formlyBootstrap',
     'ui.router',
     'smart-table',
-    'lbServices'
+    'lbServices',
+    'ui.tinymce'
 ]);
