@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('<%= moduleName %>')
     .run(function(formlyConfig) {
         var attributes = [
