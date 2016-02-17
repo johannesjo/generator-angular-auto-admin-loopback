@@ -1,6 +1,7 @@
 'use strict';
 var ScriptBase = require('../sub-generator-base.js');
 var helper = require('../helper.js');
+var formlyConverter = require('../formly-converter');
 var path = require('path');
 var fs = require('fs');
 var chalk = require('chalk');
@@ -8,6 +9,10 @@ var chalk = require('chalk');
 module.exports = ScriptBase.extend({
     initializing: function() {
         this.templateName = 'edit';
+        var formlyObj = formlyConverter(this.options.model);
+        var formlyObjStr = helper.simpleObjectToString(formlyObj, '        ');
+
+        this.formlyFields = formlyObjStr;
 
         // needs to be called manually
         this.init();

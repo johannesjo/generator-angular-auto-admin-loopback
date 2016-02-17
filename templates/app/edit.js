@@ -21,15 +21,7 @@ angular.module('<%= moduleName %>')
             $scope.vm.model = ModelService.findById({id: $state.params.id});
         }
 
-        $scope.vm.fields = [
-            {
-                key: 'name',
-                type: 'input',
-                templateOptions: {
-                    label: 'First Name'
-                }
-            }
-        ];
+        $scope.vm.fields = <%= formlyFields %>;
 
         $scope.vm.onSubmit = function() {
             alert(JSON.stringify($scope.vm.model), null, 2);
