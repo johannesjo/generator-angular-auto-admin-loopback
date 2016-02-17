@@ -4,7 +4,6 @@
  * @description
  * # <%= moduleName %>
  *
- * Routes module. All app states are defined here.
  */
 
 'use strict';

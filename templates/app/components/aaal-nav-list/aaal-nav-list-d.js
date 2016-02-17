@@ -9,7 +9,7 @@
 angular.module('<%= moduleName %>')
     .directive('aaalNavList', function() {
         return {
-            templateUrl: '<%= navListDirectiveTplUrl %>',
+            templateUrl: '<%=fullComponentsPath%>/aaal-nav-list/aaal-nav-list-d.html',
             restrict: 'E',
             scope: {},
             controller: function($scope, aaalNavListConstant) {
