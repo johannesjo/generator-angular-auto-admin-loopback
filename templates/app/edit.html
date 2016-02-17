@@ -1,3 +1,38 @@
-<div class="page-<%=dashedName %>">
-    <p>This is the <%= classedName  edit view</p>
+<div class="page-<%=dashedName %>-edit">
+    <div>
+        <button type="button"
+                ui-sref="private.TestModelList"
+                class="btn btn-sm btn-default">
+            <i class="glyphicon glyphicon-backward">
+            </i> Back to overview
+        </button>
+        <button type="button"
+                ui-sref="private.TestModelView({id:model.id})"
+                class="btn btn-sm btn-default">
+            <i class="glyphicon glyphicon-play">
+            </i> View
+        </button>
+    </div>
+
+    <h2>{{ model.id }} {{ model.title||model.name }} </h2>
+
+    <form ng-submit="vm.onSubmit()"
+          name="vm.form"
+          novalidate>
+        <formly-form model="vm.model"
+                     fields="vm.fields"
+                     options="vm.options"
+                     form="vm.form">
+            <button type="submit"
+                    class="btn btn-primary submit-button"
+                    ng-disabled="vm.form.$invalid">Submit
+            </button>
+            <button type="button"
+                    class="btn btn-default"
+                    ng-click="vm.options.resetModel()">Reset
+            </button>
+        </formly-form>
+    </form>
+    <h2>Form Data</h2>
+    <pre>{{vm.model | json}}</pre>
 </div>

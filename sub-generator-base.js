@@ -48,7 +48,7 @@ module.exports = yeoman.generators.NamedBase.extend({
         this.modelOptions = helper.simpleObjectToString(this.options.model, '        ');
         this.overviewStateFull = this.baseState + this.name + this.subGenerators.overview.stateSuffix;
         this.editStateFull = this.baseState + this.name + this.subGenerators.edit.stateSuffix;
-        this.previewStateFull = this.baseState + this.name + this.subGenerators.view.stateSuffix;
+        this.viewStateFull = this.baseState + this.name + this.subGenerators.view.stateSuffix;
 
 
         // instead use target folder to set the path

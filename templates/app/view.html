@@ -1,4 +1,4 @@
-<div class="page-<%=dashedName %>">
+<div class="page-<%=dashedName %>-view">
     <div>
         <button type="button"
                 ui-sref="<%=overviewStateFull%>"
@@ -14,6 +14,6 @@
         </button>
     </div>
 
-    <h2>{{ model.id }} {{ modelName || model.title }} </h2>
+    <h2>{{ model.id }} {{ model.name || model.title }} </h2>
     <pre class="code">{{ model|json }}</pre>
 </div>

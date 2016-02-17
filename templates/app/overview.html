@@ -1,4 +1,4 @@
-<div class="page-<%=dashedName %>">
+<div class="page-<%=dashedName %>-overview">
     <button type="button"
             ng-click="addItem(row)"
             class="btn btn-sm btn-success">
@@ -40,7 +40,7 @@
                     <button type="button"
                             ng-click="removeItem(row)"
                             class="btn btn-sm btn-danger">
-                        <i class="glyphicon glyphicon-remove-circle"></i>
+                        <i class="glyphicon glyphicon-remove"></i>
                     </button>
                     <button type="button"
                             ui-sref="<%=editStateFull%>({id:row.id})"
@@ -48,9 +48,9 @@
                         <i class="glyphicon glyphicon-edit"></i>
                     </button>
                     <button type="button"
-                            ui-sref="<%=previewStateFull%>({id:row.id})"
+                            ui-sref="<%=viewStateFull%>({id:row.id})"
                             class="btn btn-sm btn-default">
-                        <i class="glyphicon glyphicon-play-circle"></i>
+                        <i class="glyphicon glyphicon-play"></i>
                     </button>
                 </td>
             </tr>
