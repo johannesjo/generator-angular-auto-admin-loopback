@@ -34,8 +34,10 @@ function convertModelToFormly(model) {
             formlyField.type = 'input';
         }
         if (field.type === 'date') {
-            formlyField.type = 'datepicker';
-            tplOpts.datepickerPopup = 'dd-MMMM-yyyy';
+            formlyField.type = 'input';
+
+            //formlyField.type = 'datepicker';
+            //tplOpts.datepickerPopup = 'dd-MMMM-yyyy';
         }
         if (field.required) {
             tplOpts.required = true;

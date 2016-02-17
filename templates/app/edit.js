@@ -11,8 +11,13 @@ angular.module('<%= moduleName %>')
     //
     //    var ModelService = <%= modelServiceName %>;
 
-    .controller('<%= classedName %><%= nameSuffix %>', function myFunc($scope, $state, TestModel) {
+    .controller('<%= classedName %><%= nameSuffix %>', function myFunc($scope, $state, TestModel, ngToast) {
         'use strict';
+
+        function postSave() {
+            ngToast.create('Saved');
+            $state.go('<%= overviewStateFull %>');
+        }
 
         var ModelService = TestModel;
         $scope.vm = {};
@@ -21,9 +26,22 @@ angular.module('<%= moduleName %>')
             $scope.vm.model = ModelService.findById({id: $state.params.id});
         }
 
+        // form field definition
         $scope.vm.fields = <%= formlyFields %>;
 
-        $scope.vm.onSubmit = function() {
-            alert(JSON.stringify($scope.vm.model), null, 2);
+
+        $scope.vm.createOrUpdate = function() {
+            // update
+            if ($scope.vm.model.id) {
+                var modelInstance = new ModelService($scope.vm.model);
+                $scope.submitPromise = modelInstance.$save()
+                    .then(postSave);
+            }
+            // create
+            else {
+                $scope.submitPromise = ModelService.create($scope.vm.model)
+                    .$promise
+                    .then(postSave);
+            }
         };
     });
