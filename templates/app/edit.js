@@ -6,27 +6,27 @@
  * Controller of the <%= moduleName %>
  */
 angular.module('<%= moduleName %>')
-    //.controller('<%= classedName %><%= nameSuffix %>', function myFunc($scope, $state, <%= modelServiceName %>) {
+    .controller('<%= classedName %><%= nameSuffix %>', function myFunc($scope, $state, ngToast, <%= modelServiceName %>) {
+        'use strict';
+
+        var ModelService = <%= modelServiceName %>;
+
+    //.controller('<%= classedName %><%= nameSuffix %>', function myFunc($scope, $state, TestModel, ngToast) {
     //    'use strict';
     //
-    //    var ModelService = <%= modelServiceName %>;
-
-    .controller('<%= classedName %><%= nameSuffix %>', function myFunc($scope, $state, TestModel, ngToast) {
-        'use strict';
+    //    var ModelService = TestModel;
+        $scope.vm = {};
 
         function postSave() {
             ngToast.create('Saved');
             $state.go('<%= overviewStateFull %>');
         }
 
-        var ModelService = TestModel;
-        $scope.vm = {};
-
         if ($state.params.id) {
             $scope.vm.model = ModelService.findById({id: $state.params.id});
         }
 
-        // form field definition
+        //form field definition
         $scope.vm.fields = <%- formlyFields %>;
 
 

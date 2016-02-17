@@ -7,22 +7,21 @@
  */
 
 angular.module('<%= moduleName %>')
-    //.controller('<%= classedName %><%= nameSuffix %>', function myFunc($scope, <%= modelServiceName %>) {
-    //    'use strict';
-    //
-    //    var ModelService = <%= modelServiceName %>;
-
-    .controller('<%= classedName %><%= nameSuffix %>', function myFunc($scope, TestModel) {
+    .controller('<%= classedName %><%= nameSuffix %>', function myFunc($scope, <%= modelServiceName %>) {
         'use strict';
 
-        var ModelService = TestModel;
+        var ModelService = <%= modelServiceName %>;
+
+    //.controller('<%= classedName %><%= nameSuffix %>', function myFunc($scope, TestModel) {
+    //    'use strict';
+    //
+    //    var ModelService = TestModel;
         var filter = {filter: {include: 'user'}};
 
         function loadModel() {
             $scope.rowCollection = ModelService.find();
         }
 
-        //remove to the real data holder
         //remove to the real data holder
         $scope.removeItem = function removeItem(row) {
             var index = $scope.rowCollection.indexOf(row);
