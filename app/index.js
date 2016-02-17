@@ -10,9 +10,9 @@ var _s = require('underscore.string');
 var _ = require('lodash');
 var crudGen = require('../crud-gen');
 
-module.exports = yeoman.generators.Base.extend({
+module.exports = yeoman.Base.extend({
     constructor: function() {
-        yeoman.generators.Base.apply(this, arguments);
+        yeoman.Base.apply(this, arguments);
 
         // get app name
         this.argument('appname', {type: String, required: false});

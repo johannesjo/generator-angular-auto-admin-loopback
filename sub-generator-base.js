@@ -8,11 +8,12 @@ var fs = require('fs');
 var _s = require('underscore.string');
 var _ = require('lodash');
 
-module.exports = yeoman.generators.NamedBase.extend({
+module.exports = yeoman.Base.extend({
     constructor: function() {
         // super constructor needs to be called manually
         // as the constructor-function is overwritten by this
-        yeoman.generators.NamedBase.apply(this, arguments);
+        yeoman.Base.apply(this, arguments);
+        this.argument('name', {type: String, required: true});
 
         // define global options
         this.option('openInEditor');
