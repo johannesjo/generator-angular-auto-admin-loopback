@@ -1,13 +1,14 @@
 <div class="page-<%=dashedName %>-edit">
     <div>
         <button type="button"
-                ui-sref="private.TestModelList"
+                ui-sref="<%=overviewStateFull%>"
                 class="btn btn-default">
             <i class="glyphicon glyphicon-backward"></i>
             Back to overview
         </button>
         <button type="button"
-                ui-sref="private.TestModelView({id:model.id})"
+                ng-if="vm.model.id"
+                ui-sref="<%=viewStateFull%>({id:model.id})"
                 class="btn btn-default">
             <i class="glyphicon glyphicon-play"></i>
             View
