@@ -12,5 +12,5 @@
 angular.module('<%= moduleName %>')
     .constant('aaalNavListConstant',
     [
-        <%= navConstants %>
+        <%- navConstants %>
     ]);

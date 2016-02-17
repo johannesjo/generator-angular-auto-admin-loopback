@@ -66,6 +66,20 @@ module.exports = yeoman.generators.Base.extend({
         crudGen.createFiles(this, this.pathToModels);
     },
 
+    copyComponents: function() {
+        // create tpl vars
+        var dirs = this.dirs;
+
+        var modelDefinitions = crudGen.getModelData(this, this.pathToModels);
+
+        this.navConstants = crudGen.createNavStr(this, modelDefinitions, this.baseState, this.subGenerators.overview.stateSuffix);
+        this.navListDirectiveTplUrl = dirs.basePath + '/' + dirs.components + '/aaal-nav-list-d.html';
+
+        // copy components
+        var componentsPath = dirs.app + '/' + dirs.basePath + '/' + dirs.components;
+        this.directory('app/components', componentsPath);
+    },
+
     createLbServices: function() {
         if (this.slcServiceCommandArgs) {
             this.spawnCommand('lb-ng', this.slcServiceCommandArgs);
@@ -77,7 +91,8 @@ module.exports = yeoman.generators.Base.extend({
             'angular-ui-router',
             'ng-fab-form', 'angular-formly',
             'angular-formly-templates-bootstrap',
-            'angular-smart-table'
+            'angular-smart-table',
+            'ui.bootstrap'
         ];
         requiredComponents.unshift('install');
         requiredComponents.push('--save');

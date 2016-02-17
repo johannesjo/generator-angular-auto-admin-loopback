@@ -27,7 +27,7 @@ angular.module('<%= moduleName %>')
         }
 
         // form field definition
-        $scope.vm.fields = <%= formlyFields %>;
+        $scope.vm.fields = <%- formlyFields %>;
 
 
         $scope.vm.createOrUpdate = function() {

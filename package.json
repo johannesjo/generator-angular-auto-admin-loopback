@@ -24,7 +24,7 @@
     "lodash": "^3.6.0",
     "underscore.string": "^3.0.3",
     "wiredep": "^2.2.2",
-    "yeoman-generator": "^0.19.1",
+    "yeoman-generator": "latest",
     "yosay": "^1.0.3"
   },
   "engines": {

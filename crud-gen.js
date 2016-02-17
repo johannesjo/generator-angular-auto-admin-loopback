@@ -54,11 +54,9 @@ module.exports = {
             var model = modelDefinitions[i];
             this.createCrudFiles(generator, model);
         }
-
-        this.createNav(generator, modelDefinitions);
     },
 
-    createNav: function(generator, modelDefinitions) {
+    createNavStr: function(generator, modelDefinitions, baseState, stateSuffix) {
         function createNavStr(navArray) {
             var ind = '    ';
             var navArrayString = '';
@@ -82,19 +80,10 @@ module.exports = {
             var model = modelDefinitions[i];
             navArray.push({
                 name: model.name,
-                stateName: generator.baseState + model.name + generator.subGenerators.overview.stateSuffix
+                stateName: baseState + model.name + stateSuffix
             });
         }
 
-        generator.navConstants = createNavStr(navArray);
-
-        // create files
-        var dirs = generator.dirs;
-        var componentsPath = dirs.app + '/' + dirs.basePath + '/' + dirs.components;
-        generator.template('app/aaal-nav-list-constant.js', componentsPath + '/aaal-nav-list-constant.js');
-        generator.template('app/aaal-nav-list-d.html', componentsPath + '/aaal-nav-list-d.html');
-        generator.navListDirectiveTplUrl = dirs.basePath + '/' + dirs.components + '/aaal-nav-list-d.html';
-        generator.template('app/aaal-nav-list-d.js', componentsPath + '/aaal-nav-list-d.js');
-
+        return createNavStr(navArray);
     }
 };
