@@ -6,8 +6,7 @@
  * Controller of the <%= moduleName %>
  */
 angular.module('<%= moduleName %>')
-    .controller('<%= classedName %><%= nameSuffix %>', function ()
-    {
+    .controller('<%= classedName %><%= nameSuffix %>', function() {
         'use strict';
 
     });

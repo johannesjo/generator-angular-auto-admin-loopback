@@ -7,14 +7,12 @@
  * # aaalNavList
  */
 angular.module('<%= moduleName %>')
-    .directive('aaalNavList', function ()
-    {
+    .directive('aaalNavList', function() {
         return {
             templateUrl: '<%= navListDirectiveTplUrl %>',
             restrict: 'E',
             scope: {},
-            controller: function ($scope, aaalNavListConstant)
-            {
+            controller: function($scope, aaalNavListConstant) {
                 $scope.aaalNavList = aaalNavListConstant;
             }
         };

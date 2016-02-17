@@ -11,8 +11,7 @@ var _ = require('lodash');
 var crudGen = require('../crud-gen');
 
 module.exports = yeoman.generators.Base.extend({
-    constructor: function ()
-    {
+    constructor: function() {
         yeoman.generators.Base.apply(this, arguments);
 
         // get app name
@@ -35,8 +34,7 @@ module.exports = yeoman.generators.Base.extend({
         this.sourceRoot(path.join(__dirname, '../templates'));
     },
 
-    config: function ()
-    {
+    config: function() {
         // merge config with this context to make vars available
         // otherwise set default settings if they don't exit yet
         var currentCfg = this.config.getAll();
@@ -54,8 +52,7 @@ module.exports = yeoman.generators.Base.extend({
     },
 
 
-    appJs: function appJs()
-    {
+    appJs: function appJs() {
         this.template('app/_aaal.js', this.dirs.app + '/' + this.dirs.basePath + '/_aaal.js');
         this.template('app/aaal-routes.js', this.routesFile);
 
@@ -65,20 +62,17 @@ module.exports = yeoman.generators.Base.extend({
         }
     },
 
-    runCrudGenerator: function ()
-    {
+    runCrudGenerator: function() {
         crudGen.createFiles(this, this.pathToModels);
     },
 
-    createLbServices: function ()
-    {
+    createLbServices: function() {
         if (this.slcServiceCommandArgs) {
             this.spawnCommand('lb-ng', this.slcServiceCommandArgs);
         }
     },
 
-    install: function packageFiles()
-    {
+    install: function packageFiles() {
         var requiredComponents = [
             'angular-ui-router',
             'ng-fab-form', 'angular-formly',
@@ -88,17 +82,14 @@ module.exports = yeoman.generators.Base.extend({
         requiredComponents.unshift('install');
         requiredComponents.push('--save');
 
-        this.on('end', function ()
-        {
+        this.on('end', function() {
             //save configuration
             this.config.save();
             this.spawnCommand('bower', requiredComponents);
         });
     },
-    postRun: function ()
-    {
-        this.on('dependenciesInstalled', function ()
-        {
+    postRun: function() {
+        this.on('dependenciesInstalled', function() {
             this.spawnCommand('gulp', ['serve']);
         });
     }

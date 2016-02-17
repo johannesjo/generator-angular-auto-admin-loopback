@@ -1,11 +1,10 @@
-describe('<%= moduleName %>.routes', function ()
-{
+describe('<%= moduleName %>.routes', function() {
     'use strict';
 
     beforeEach(module('<%= moduleName %>'));
 
-    it('should be defined', function ()
-    {
-        expect(true).toBe(true);
+    it('should be defined', function() {
+        expect(true)
+            .toBe(true);
     });
 });

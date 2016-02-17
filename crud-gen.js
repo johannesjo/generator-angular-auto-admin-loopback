@@ -1,8 +1,7 @@
 var fs = require('fs');
 
 module.exports = {
-    getModelData: function (generator, modelDir)
-    {
+    getModelData: function(generator, modelDir) {
         // read model definitions
         var modelDefinitions = [];
         var files = fs.readdirSync(modelDir);
@@ -17,8 +16,7 @@ module.exports = {
         return modelDefinitions;
     },
 
-    createCrudFiles: function (generator, model)
-    {
+    createCrudFiles: function(generator, model) {
         generator.composeWith('aaal:overview', {
                 args: [model.name],
                 options: {
@@ -40,8 +38,7 @@ module.exports = {
 
     },
 
-    createFiles: function (generator, modelDir)
-    {
+    createFiles: function(generator, modelDir) {
         var modelDefinitions = this.getModelData(generator, modelDir);
 
         for (var i = 0; i < modelDefinitions.length; i++) {
@@ -52,10 +49,8 @@ module.exports = {
         this.createNav(generator, modelDefinitions);
     },
 
-    createNav: function (generator, modelDefinitions)
-    {
-        function createNavStr(navArray)
-        {
+    createNav: function(generator, modelDefinitions) {
+        function createNavStr(navArray) {
             var ind = '    ';
             var navArrayString = '';
 

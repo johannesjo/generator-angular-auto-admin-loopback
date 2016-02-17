@@ -5,20 +5,17 @@ var assert = require('yeoman-generator').assert;
 var fs = require('fs');
 
 
-describe('moda Route generator', function ()
-{
+describe('moda Route generator', function() {
     var generatorPath = '../r',
         routesDir = 'app/scripts/routes/';
 
 
     // not testing the actual run of generators yet
-    it('can be required without throwing', function ()
-    {
+    it('can be required without throwing', function() {
         this.app = require(generatorPath);
     });
 
-    describe('basic file creation', function ()
-    {
+    describe('basic file creation', function() {
         var testArguments = 'test-name';
         var expectedContent = [
             [routesDir + 'test-name/test-name-c.js', /TestNameCtrl/],
@@ -51,20 +48,17 @@ describe('moda Route generator', function ()
 
         var runGen;
 
-        beforeEach(function ()
-        {
+        beforeEach(function() {
             runGen = helpers
                 .run(path.join(__dirname, generatorPath))
                 .inDir(path.join(__dirname, '.tmp'));
         });
 
-        it('creates expected files', function (done)
-        {
+        it('creates expected files', function(done) {
             runGen
                 .withArguments(testArguments)
                 .withOptions(options)
-                .on('end', function ()
-                {
+                .on('end', function() {
                     assert.file([].concat(
                         expected
                     ));
@@ -83,8 +77,7 @@ describe('moda Route generator', function ()
     });
 
 
-    describe('files in sub folder creation', function ()
-    {
+    describe('files in sub folder creation', function() {
         var testArguments = 'parState.subState';
         var expectedContent = [
             [routesDir + 'par-state/sub-state/sub-state-c.js', /SubStateCtrl/],
@@ -117,20 +110,17 @@ describe('moda Route generator', function ()
 
         var runGen;
 
-        beforeEach(function ()
-        {
+        beforeEach(function() {
             runGen = helpers
                 .run(path.join(__dirname, generatorPath))
                 .inDir(path.join(__dirname, '.tmp'));
         });
 
-        it('creates expected files', function (done)
-        {
+        it('creates expected files', function(done) {
             runGen
                 .withArguments(testArguments)
                 .withOptions(options)
-                .on('end', function ()
-                {
+                .on('end', function() {
                     assert.file([].concat(
                         expected
                     ));
@@ -149,8 +139,7 @@ describe('moda Route generator', function ()
     });
 
 
-    describe('files with service creation and no template (in sub folder)', function ()
-    {
+    describe('files with service creation and no template (in sub folder)', function() {
         var testArguments = 'parState.subState';
         var expectedContent = [
             [routesDir + 'par-state/sub-state/sub-state-c.js', /SubStateCtrl/],
@@ -185,15 +174,13 @@ describe('moda Route generator', function ()
 
         var runGen;
 
-        beforeEach(function ()
-        {
+        beforeEach(function() {
             runGen = helpers
                 .run(path.join(__dirname, generatorPath))
                 .inDir(path.join(__dirname, '.tmp'));
         });
 
-        it('creates expected files', function (done)
-        {
+        it('creates expected files', function(done) {
             runGen
                 .withArguments(testArguments)
                 .withPrompts({
@@ -202,8 +189,7 @@ describe('moda Route generator', function ()
                 })
 
                 .withOptions(options)
-                .on('end', function ()
-                {
+                .on('end', function() {
                     assert.file([].concat(
                         expected
                     ));
@@ -222,8 +208,7 @@ describe('moda Route generator', function ()
     });
 
     // TODO withLocalConfig is not working yet correctly
-    describe('the routes directory should be configurable', function ()
-    {
+    describe('the routes directory should be configurable', function() {
 
         var otherRoutesDir = 'app/scripts/other-routes/';
         var testArguments = 'parState.subState';
@@ -257,15 +242,13 @@ describe('moda Route generator', function ()
 
         var runGen;
 
-        beforeEach(function ()
-        {
+        beforeEach(function() {
             runGen = helpers
                 .run(path.join(__dirname, generatorPath))
                 .inDir(path.join(__dirname, '.tmp'));
         });
 
-        it('creates expected files', function (done)
-        {
+        it('creates expected files', function(done) {
             runGen
                 .withArguments(testArguments)
                 .withPrompts({
@@ -276,8 +259,7 @@ describe('moda Route generator', function ()
                     dirs: {routes: 'other-routes'}
                 })
                 .withOptions(options)
-                .on('end', function ()
-                {
+                .on('end', function() {
                     assert.file([].concat(
                         expected
                     ));
@@ -296,8 +278,7 @@ describe('moda Route generator', function ()
     });
 
 
-    describe('route injection with ui-router', function ()
-    {
+    describe('route injection with ui-router', function() {
         var testArguments = 'parState.subState';
         var routesFile = 'app/scripts/routes.js';
 
@@ -328,15 +309,13 @@ describe('moda Route generator', function ()
 
         var runGen;
 
-        beforeEach(function ()
-        {
+        beforeEach(function() {
             runGen = helpers
                 .run(path.join(__dirname, generatorPath))
                 .inDir(path.join(__dirname, '.tmp'));
         });
 
-        it('injects routes into the router.js', function (done)
-        {
+        it('injects routes into the router.js', function(done) {
             runGen
                 .withArguments(testArguments)
                 .withLocalConfig({
@@ -348,22 +327,22 @@ describe('moda Route generator', function ()
                     createTemplate: true,
                     createCtrl: true
                 })
-                .withOptions(options).on('end', function ()
-            {
-                assert.file([].concat(
-                    expected
-                ));
-                assert.noFile([].concat(
-                    noFile
-                ));
-                assert.fileContent([].concat(
-                    expectedContent
-                ));
-                assert.noFileContent([].concat(
-                    nonExpected
-                ));
-                done();
-            });
+                .withOptions(options)
+                .on('end', function() {
+                    assert.file([].concat(
+                        expected
+                    ));
+                    assert.noFile([].concat(
+                        noFile
+                    ));
+                    assert.fileContent([].concat(
+                        expectedContent
+                    ));
+                    assert.noFileContent([].concat(
+                        nonExpected
+                    ));
+                    done();
+                });
         });
     });
 });

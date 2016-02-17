@@ -5,13 +5,11 @@
 
 'use strict';
 
-var MainPage = function ()
-{
+var MainPage = function() {
     this.body = element(by.css('body'));
 };
 
-MainPage.prototype.goTo = function ()
-{
+MainPage.prototype.goTo = function() {
     return browser.get('/');
 };
 

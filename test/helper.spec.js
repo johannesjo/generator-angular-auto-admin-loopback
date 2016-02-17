@@ -4,12 +4,10 @@ var assert = require('yeoman-generator').assert;
 var helperScripts = require('../helper.js');
 var fs = require('fs');
 
-describe('moda Helper-Scripts', function ()
-{
+describe('moda Helper-Scripts', function() {
     helperScripts.STATE_NEEDLE = '/* NEEEEEEDLE */';
 
-    describe('addToFile', function ()
-    {
+    describe('addToFile', function() {
         var fn = helperScripts.addToFile;
         var code = 'alert("asd");';
         var needle = '/* NEEEEEEDLE */';
@@ -17,10 +15,8 @@ describe('moda Helper-Scripts', function ()
         var testFileContent = needle;
 
 
-        beforeEach(function (done)
-        {
-            fs.writeFile(testFile, testFileContent, function (err)
-            {
+        beforeEach(function(done) {
+            fs.writeFile(testFile, testFileContent, function(err) {
                 if (err) {
                     return console.log(err);
                 }
@@ -28,17 +24,14 @@ describe('moda Helper-Scripts', function ()
             });
         });
 
-        afterEach(function (done)
-        {
+        afterEach(function(done) {
             // remove files
-            fs.unlink(testFile, function ()
-            {
+            fs.unlink(testFile, function() {
                 done();
             });
         });
 
-        it('injects code above a needle', function ()
-        {
+        it('injects code above a needle', function() {
             fn(testFile, code, needle);
             assert.fileContent([
                 [testFile, 'alert("asd");\n/* NEEEEEEDLE */']
@@ -52,8 +45,7 @@ describe('moda Helper-Scripts', function ()
         });
     });
 
-    describe('injectRoute', function ()
-    {
+    describe('injectRoute', function() {
         var fn = helperScripts.injectRoute;
         var needle = '/* NEEEEEEDLE */';
         var routesFile = path.join(__dirname, '.tmp/test-route.js');
@@ -61,18 +53,15 @@ describe('moda Helper-Scripts', function ()
         var url = '/some-url';
         var mockGen = {
             log: {
-                writeln: function ()
-                {
+                writeln: function() {
 
                 }
             }
         };
 
-        beforeEach(function (done)
-        {
+        beforeEach(function(done) {
             // create test routes file
-            fs.writeFile(routesFile, routesFileContent, function (err)
-            {
+            fs.writeFile(routesFile, routesFileContent, function(err) {
                 if (err) {
                     return console.log(err);
                 }
@@ -80,17 +69,14 @@ describe('moda Helper-Scripts', function ()
             });
         });
 
-        afterEach(function (done)
-        {
+        afterEach(function(done) {
             // remove files
-            fs.unlink(routesFile, function ()
-            {
+            fs.unlink(routesFile, function() {
                 done();
             });
         });
 
-        it('injects state above a needle', function ()
-        {
+        it('injects state above a needle', function() {
             fn(routesFile, 'test.name', url, false, false, mockGen);
             assert.fileContent([
                 [routesFile, /test\.name/],
@@ -101,8 +87,7 @@ describe('moda Helper-Scripts', function ()
             ]);
         });
 
-        it('injects the controller and template if given', function ()
-        {
+        it('injects the controller and template if given', function() {
             fn(routesFile, 'test.name', url, 'some.html', 'SomeCtrl', mockGen);
             assert.fileContent([
                 [routesFile, /test\.name/],
@@ -113,8 +98,7 @@ describe('moda Helper-Scripts', function ()
             ]);
         });
 
-        it('injects the a template if given', function ()
-        {
+        it('injects the a template if given', function() {
             fn(routesFile, 'test.name', url, 'some.html', false, mockGen);
             assert.fileContent([
                 [routesFile, /test\.name/],

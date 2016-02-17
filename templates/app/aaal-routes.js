@@ -8,8 +8,7 @@
  */
 
 angular.module('<%= moduleName %>')
-    .config(function ($stateProvider)
-    {
+    .config(function($stateProvider) {
         'use strict';
 
         var AAAL_BASE_STATE = '<%= baseState %>';

@@ -6,14 +6,12 @@ var fs = require('fs');
 var chalk = require('chalk');
 
 module.exports = ScriptBase.extend({
-    initializing: function ()
-    {
+    initializing: function() {
         this.templateName = 'edit';
         // needs to be called manually
         this.init();
     },
-    install: function ()
-    {
+    install: function() {
         // SOMEWHAT HACKY, but not possible otherwise to run
         // after file creation due to how the run queue works
         // @see http://yeoman.io/authoring/running-context.html

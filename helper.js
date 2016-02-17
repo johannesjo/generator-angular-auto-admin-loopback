@@ -6,14 +6,14 @@ var chalk = require('chalk');
 exports.STATE_NEEDLE = '/* STATES-NEEDLE - DO NOT REMOVE THIS */';
 
 // inspired by https://github.com/cgross/generator-cg-angular/blob/master/utils.js
-exports.addToFile = function (filename, lineToAdd, beforeMarker)
-{
+exports.addToFile = function(filename, lineToAdd, beforeMarker) {
     try {
         var fullPath = path.resolve(process.cwd(), filename);
         var fileSrc = fs.readFileSync(fullPath, 'utf8');
 
         var indexOf = fileSrc.indexOf(beforeMarker);
-        var lineStart = fileSrc.substring(0, indexOf).lastIndexOf('\n') + 1;
+        var lineStart = fileSrc.substring(0, indexOf)
+                .lastIndexOf('\n') + 1;
         var indent = fileSrc.substring(lineStart, indexOf);
         fileSrc = fileSrc.substring(0, indexOf) + lineToAdd + '\n' + indent + fileSrc.substring(indexOf);
 
@@ -23,8 +23,7 @@ exports.addToFile = function (filename, lineToAdd, beforeMarker)
     }
 };
 
-exports.injectRoute = function (routesFile, name, url, tplUrl, ctrl, that)
-{
+exports.injectRoute = function(routesFile, name, url, tplUrl, ctrl, that) {
     var IND = '    ';
     var template = tplUrl ? ',\n' + IND + IND + IND + IND + 'templateUrl: \'' + tplUrl + '\'' : '';
     ctrl = ctrl ? ',\n' + IND + IND + IND + IND + 'controller: \'' + ctrl + '\'' : '';
@@ -43,12 +42,10 @@ exports.injectRoute = function (routesFile, name, url, tplUrl, ctrl, that)
 exports.simpleObjectToString = simpleObjectToString;
 
 
-function simpleObjectToString(obj, startIndent)
-{
+function simpleObjectToString(obj, startIndent) {
     var IND = '    ';
 
-    function handleTypes(item, startIndent)
-    {
+    function handleTypes(item, startIndent) {
         var str = '';
         if (typeof(item) === "boolean") {
             str += item ? 'true' : 'false';
@@ -64,8 +61,7 @@ function simpleObjectToString(obj, startIndent)
         return str;
     }
 
-    function createArrayStr(arr, startIndent)
-    {
+    function createArrayStr(arr, startIndent) {
         var arrStr = '[';
         for (var i = 0; i < arr.length; i++) {
             var arrItem = arr[i];
@@ -81,8 +77,7 @@ function simpleObjectToString(obj, startIndent)
         return arrStr;
     }
 
-    function createObjectPropsStr(obj, key, startIndent, i)
-    {
+    function createObjectPropsStr(obj, key, startIndent, i) {
         var objPropsStr = '';
         var prop = obj[key];
         var objLength = Object.keys(obj).length - 1;
@@ -97,8 +92,7 @@ function simpleObjectToString(obj, startIndent)
         return objPropsStr;
     }
 
-    function createObjStr(obj, startIndent)
-    {
+    function createObjStr(obj, startIndent) {
         var str = '';
         var i = 0;
         str += '{';
