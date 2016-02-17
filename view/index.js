@@ -7,7 +7,7 @@ var chalk = require('chalk');
 
 module.exports = ScriptBase.extend({
     initializing: function() {
-        this.templateName = 'edit';
+        this.templateName = 'view';
 
         // needs to be called manually
         this.init();

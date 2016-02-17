@@ -1,0 +1,19 @@
+<div class="page-<%=dashedName %>">
+    <div>
+        <button type="button"
+                ui-sref="<%=overviewStateFull%>"
+                class="btn btn-sm btn-default">
+            <i class="glyphicon glyphicon-backward">
+            </i> Back to overview
+        </button>
+        <button type="button"
+                ui-sref="<%=editStateFull%>({id:model.id})"
+                class="btn btn-sm btn-info">
+            <i class="glyphicon glyphicon-edit">
+            </i> Edit
+        </button>
+    </div>
+
+    <h2>{{ model.id }} {{ modelName || model.title }} </h2>
+    <pre class="code">{{ model|json }}</pre>
+</div>

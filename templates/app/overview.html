@@ -43,12 +43,12 @@
                         <i class="glyphicon glyphicon-remove-circle"></i>
                     </button>
                     <button type="button"
-                            ui-sref="<%=editStateFull%>(row.id)"
+                            ui-sref="<%=editStateFull%>({id:row.id})"
                             class="btn btn-sm btn-info">
                         <i class="glyphicon glyphicon-edit"></i>
                     </button>
                     <button type="button"
-                            ui-sref="<%=previewStateFull%>(row.id)"
+                            ui-sref="<%=previewStateFull%>({id:row.id})"
                             class="btn btn-sm btn-default">
                         <i class="glyphicon glyphicon-play-circle"></i>
                     </button>

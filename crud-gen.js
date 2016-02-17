@@ -35,6 +35,15 @@ module.exports = {
             {
                 local: require.resolve('./edit')
             });
+        generator.composeWith('aaal:view', {
+                args: [model.name],
+                options: {
+                    model: model
+                }
+            },
+            {
+                local: require.resolve('./view')
+            });
 
     },
 

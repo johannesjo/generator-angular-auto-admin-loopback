@@ -5,6 +5,7 @@ module.exports = {
     testPassOnDefault: true,
     stylePrefix: '_',
     editorCommand: 'idea',
+    uiRouter: true,
     baseState: 'private.',
     moduleName: 'aaal',
     pathOutputStyle: 'dasherize',
@@ -41,19 +42,22 @@ module.exports = {
             stateSuffix: 'List',
             subRoute: 'list',
             suffix: '-list-c',
-            nameSuffix: 'ListCtrl'
+            nameSuffix: 'ListCtrl',
+            createDirectory: true
         },
         edit: {
             stateSuffix: 'Edit',
             subRoute: 'edit',
             suffix: '-edit-c',
-            nameSuffix: 'EditCtrl'
+            nameSuffix: 'EditCtrl',
+            createDirectory: true
         },
-        preview: {
+        view: {
             stateSuffix: 'View',
             subRoute: 'view',
             suffix: '-view-c',
-            nameSuffix: 'ViewCtrl'
+            nameSuffix: 'ViewCtrl',
+            createDirectory: true
         }
     }
 };
