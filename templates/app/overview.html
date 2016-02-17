@@ -1,16 +1,23 @@
 <div class="page-<%=dashedName %>">
-
     <button type="button"
-            ng-click="addRandomItem(row)"
+            ng-click="addItem(row)"
             class="btn btn-sm btn-success">
         <i class="glyphicon glyphicon-plus">
-        </i> Add random item
+        </i> Add new item
     </button>
 
     <table st-table="displayedCollection"
            st-safe-src="rowCollection"
            class="table table-striped">
         <thead>
+            <tr>
+                <th colspan="5">
+                    <input st-search=""
+                           class="form-control"
+                           placeholder="Search ..."
+                           type="text"/>
+                </th>
+            </tr>
             <tr>
                 <th st-sort="id">id</th>
                 <th st-sort="title">title</th>
@@ -20,21 +27,13 @@
                 <th st-sort="updatedAt"
                     ng-if="updatedAt">updatedAt
                 </th>
-                <th>Actions</th>
-            </tr>
-            <tr>
-                <th colspan="5">
-                    <input st-search=""
-                           class="form-control"
-                           placeholder="global search ..."
-                           type="text"/>
-                </th>
+                <th>actions</th>
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat="row in displayedCollection">
                 <td>{{row.id}}</td>
-                <td>{{row.title}}</td>
+                <td>{{row.name||row.title}}</td>
                 <td ng-if="createdAt">{{row.createdAt|date}}</td>
                 <td ng-if="updatedAt">{{row.updatedAt|date}}</td>
                 <td>
@@ -42,6 +41,16 @@
                             ng-click="removeItem(row)"
                             class="btn btn-sm btn-danger">
                         <i class="glyphicon glyphicon-remove-circle"></i>
+                    </button>
+                    <button type="button"
+                            ui-sref="<%=editStateFull%>(row.id)"
+                            class="btn btn-sm btn-info">
+                        <i class="glyphicon glyphicon-edit"></i>
+                    </button>
+                    <button type="button"
+                            ui-sref="<%=previewStateFull%>(row.id)"
+                            class="btn btn-sm btn-default">
+                        <i class="glyphicon glyphicon-play-circle"></i>
                     </button>
                 </td>
             </tr>

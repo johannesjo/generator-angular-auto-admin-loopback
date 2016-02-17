@@ -9,8 +9,7 @@ var _s = require('underscore.string');
 var _ = require('lodash');
 
 module.exports = yeoman.generators.NamedBase.extend({
-    constructor: function ()
-    {
+    constructor: function() {
         // super constructor needs to be called manually
         // as the constructor-function is overwritten by this
         yeoman.generators.NamedBase.apply(this, arguments);
@@ -35,15 +34,23 @@ module.exports = yeoman.generators.NamedBase.extend({
     /**
      *  parent initialize function, inherited by sub-gens
      */
-    init: function ()
-    {
+    init: function() {
         this.mergeConfig();
         this.overWriteTplPathIfSet();
 
+        // injection & template vars
         // set current subgen
         this.subGenCfg = this.subGenerators[this.templateName];
         // the state name is the argument
         this.stateName = this.name + this.subGenCfg.stateSuffix;
+        // template vars
+        this.modelServiceName = this.options.model.name;
+        this.modelOptions = helper.simpleObjectToString(this.options.model, '        ');
+        this.overviewStateFull = this.baseState + this.name + this.subGenerators.overview.stateSuffix;
+        this.editStateFull = this.baseState + this.name + this.subGenerators.edit.stateSuffix;
+        this.previewStateFull = this.baseState + this.name + this.subGenerators.preview.stateSuffix;
+
+
         // instead use target folder to set the path
         this.targetFolder = path.join(this.dirs.routes);
         // names need to be reset
@@ -57,8 +64,7 @@ module.exports = yeoman.generators.NamedBase.extend({
      * helper function to merge default settings with the ones
      * provided by the .yo-rc.json
      */
-    mergeConfig: function ()
-    {
+    mergeConfig: function() {
         // create a clone to avoid testing issues
         var defaultCfg = _.cloneDeep(defaultSettings);
         _.merge(defaultCfg, this.config.getAll());
@@ -69,8 +75,7 @@ module.exports = yeoman.generators.NamedBase.extend({
      * allows overwriting of the template path of the generator
      * so users can specifiy their own template path
      */
-    overWriteTplPathIfSet: function ()
-    {
+    overWriteTplPathIfSet: function() {
         if (this.customTemplatesPath) {
             if (fs.existsSync(this.customTemplatesPath)) {
                 this.sourceRoot(this.customTemplatesPath);
@@ -84,8 +89,7 @@ module.exports = yeoman.generators.NamedBase.extend({
      * set the app variables, e.g. the name of the app in the
      * different required formats such as camelized or slugified
      */
-    setAppVariables: function ()
-    {
+    setAppVariables: function() {
         this.moduleName = this.config.get('moduleName') || 'aaal';
     },
 
@@ -93,8 +97,7 @@ module.exports = yeoman.generators.NamedBase.extend({
      * sets all the different name versions to be used in the templates
      * @param name{string}
      */
-    setModuleNames: function (name)
-    {
+    setModuleNames: function(name) {
         this.cameledName = _s.camelize(name);
         this.classedName = _s.classify(name);
         this.sluggedName = _s.slugify(name);
@@ -107,8 +110,7 @@ module.exports = yeoman.generators.NamedBase.extend({
      * @param path{string}
      * @returns {string}
      */
-    stripModuleAndAppPaths: function (path)
-    {
+    stripModuleAndAppPaths: function(path) {
         path = path
             .replace(this.dirs.basePath, '')
             .replace(this.dirs.app, '');
@@ -121,11 +123,11 @@ module.exports = yeoman.generators.NamedBase.extend({
      * @param name{string}
      * @returns {string}
      */
-    formatNamePath: function (name)
-    {
+    formatNamePath: function(name) {
         var style = this.config.get('pathOutputStyle') || 'dasherize';
         // first letter to lowercase to prevent issues with dasherize
-        name = name.charAt(0).toLowerCase() + name.slice(1);
+        name = name.charAt(0)
+                .toLowerCase() + name.slice(1);
         return _s[style](name);
     },
 
@@ -133,8 +135,7 @@ module.exports = yeoman.generators.NamedBase.extend({
      *
      * @returns {string}
      */
-    defineTargetFolder: function ()
-    {
+    defineTargetFolder: function() {
         var realTargetFolder;
 
         // allow creating sub-modules via reading and parsing the path argument
@@ -162,8 +163,7 @@ module.exports = yeoman.generators.NamedBase.extend({
      * main file-creation pipeline function
      * @param templateName
      */
-    generateSourceAndTest: function (templateName)
-    {
+    generateSourceAndTest: function(templateName) {
         this.templateName = templateName;
         this.curGenCfg = this.subGenerators[templateName];
 
@@ -240,8 +240,7 @@ module.exports = yeoman.generators.NamedBase.extend({
      * @param fileToCreate
      * @returns {string}
      */
-    getCustomTplFromYoRc: function (fileToCreate)
-    {
+    getCustomTplFromYoRc: function(fileToCreate) {
         var customYoRcTpl;
         var curGenCfg = null;
         var SPEC_REG_EX = new RegExp(this.testSuffix + '\\' + this.fileExt.script + '$');
@@ -279,8 +278,7 @@ module.exports = yeoman.generators.NamedBase.extend({
      * @param customYoRcTpl{string}
      * @param targetDir{string}
      */
-    writeCustomYoRcTpl: function (customYoRcTpl, targetDir)
-    {
+    writeCustomYoRcTpl: function(customYoRcTpl, targetDir) {
         var tpl = _.template(customYoRcTpl, {})(this);
         this.fs.write(targetDir, tpl);
     },
@@ -288,8 +286,7 @@ module.exports = yeoman.generators.NamedBase.extend({
     /**
      * things done after all files are created
      */
-    afterFileCreationHook: function ()
-    {
+    afterFileCreationHook: function() {
         // run favorite ide (first to smooth the experiance)
         if (this.options.openInEditor) {
             this.spawnCommand(this.editorCommand, this.createdFiles);
