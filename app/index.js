@@ -73,7 +73,7 @@ module.exports = yeoman.generators.Base.extend({
         var modelDefinitions = crudGen.getModelData(this, this.pathToModels);
 
         this.navConstants = crudGen.createNavStr(this, modelDefinitions, this.baseState, this.subGenerators.overview.stateSuffix);
-        this.navListDirectiveTplUrl = dirs.basePath + '/' + dirs.components + '/aaal-nav-list-d.html';
+        this.navListDirectiveTplUrl = dirs.basePath + '/' + dirs.components + '/aaal-nav-list/aaal-nav-list-d.html';
 
         // copy components
         var componentsPath = dirs.app + '/' + dirs.basePath + '/' + dirs.components;
