@@ -27,7 +27,7 @@
                 <th st-sort="updatedAt"
                     ng-if="updatedAt">updatedAt
                 </th>
-                <th>actions</th>
+                <th style="text-align: right">actions</th>
             </tr>
         </thead>
         <tbody>
@@ -36,7 +36,7 @@
                 <td>{{row.name||row.title}}</td>
                 <td ng-if="createdAt">{{row.createdAt|date}}</td>
                 <td ng-if="updatedAt">{{row.updatedAt|date}}</td>
-                <td>
+                <td style="text-align: right">
                     <button type="button"
                             ng-click="removeItem(row)"
                             class="btn btn-sm btn-danger">
