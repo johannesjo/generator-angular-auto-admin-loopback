@@ -10,7 +10,7 @@ module.exports = {
     moduleName: 'aaal',
     pathOutputStyle: 'dasherize',
     routesFile: 'app/scripts/aaal/aaal-routes.js',
-    slcServiceCommandArgs: ['../server/server.js', 'app/scripts/aaal/lb-services-s.js'],
+    slcServiceCommandArgs: ['../server/server.js', 'app/scripts/aaal/global-services/lb-services-s.js'],
     pathToModels: './../common/models',
     fileExt: {
         script: '.js',
