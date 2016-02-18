@@ -70,7 +70,7 @@ module.exports = yeoman.Base.extend({
         // create tpl vars
         var dirs = this.dirs;
 
-        var modelDefinitions = crudGen.getModelData(this, this.pathToModels);
+        var modelDefinitions = helper.getModelData(this.destinationPath(this.pathToModels));
 
         this.navConstants = crudGen.createNavStr(this, modelDefinitions, this.baseState, this.subGenerators.overview.stateSuffix);
         this.fullComponentsPath = dirs.basePath + '/' + dirs.components;

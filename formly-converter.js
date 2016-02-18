@@ -1,21 +1,6 @@
 var helper = require('./helper');
 var fs = require('fs');
 
-function getModelData(modelDir) {
-    // read model definitions
-    var modelDefinitions = [];
-    var files = fs.readdirSync(modelDir);
-    for (var i in files) {
-        var filename = files[i];
-        // check if json
-        if (filename.substr(filename.lastIndexOf('.') + 1) === 'json') {
-            var modelDefinition = require(modelDir + '/' + filename);
-            modelDefinitions.push(modelDefinition);
-        }
-    }
-    return modelDefinitions;
-}
-
 function convertModelToFormly(model) {
     var formlyFields = [];
 
@@ -36,12 +21,12 @@ function convertModelToFormly(model) {
             formlyField.type = 'input';
         }
         else if (field.type === 'date') {
-            formlyField.type = 'input';
+            //formlyField.type = 'input';
 
-            //formlyField.type = 'datepicker';
-            //tplOpts.datepickerPopup = 'dd-MMMM-yyyy';
-            //tplOpts.type = 'date';
-            //tplOpts.datepickerOptions = {};
+            formlyField.type = 'datepicker';
+            tplOpts.datepickerPopup = 'dd-MMMM-yyyy';
+            tplOpts.type = 'date';
+            tplOpts.datepickerOptions = {};
         }
 
         // tpl opts
@@ -60,9 +45,5 @@ function convertModelToFormly(model) {
 
     return formlyFields;
 }
-
-var modelData = getModelData('/home/johannes/www/angular-auto-admin-loopback/common/models');
-var formlyData = convertModelToFormly(modelData[0]);
-
 
 module.exports = convertModelToFormly;

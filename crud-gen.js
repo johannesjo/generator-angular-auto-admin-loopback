@@ -1,21 +1,7 @@
 var fs = require('fs');
+var helper = require('./helper');
 
 module.exports = {
-    getModelData: function(generator, modelDir) {
-        // read model definitions
-        var modelDefinitions = [];
-        var files = fs.readdirSync(modelDir);
-        for (var i in files) {
-            var filename = files[i];
-            // check if json
-            if (filename.substr(filename.lastIndexOf('.') + 1) === 'json') {
-                var modelDefinition = require(generator.destinationPath(modelDir + '/' + filename));
-                modelDefinitions.push(modelDefinition);
-            }
-        }
-        return modelDefinitions;
-    },
-
     createCrudFiles: function(generator, model) {
         generator.composeWith('aaal:overview', {
                 args: [model.name],
@@ -48,7 +34,7 @@ module.exports = {
     },
 
     createFiles: function(generator, modelDir) {
-        var modelDefinitions = this.getModelData(generator, modelDir);
+        var modelDefinitions = helper.getModelData(generator.destinationPath(modelDir));
 
         for (var i = 0; i < modelDefinitions.length; i++) {
             var model = modelDefinitions[i];
