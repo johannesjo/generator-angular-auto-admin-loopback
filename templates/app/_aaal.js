@@ -8,12 +8,16 @@
  */
 'use strict';
 
-angular.module('<%= moduleName %>', [
-    'ngFabForm',
-    'formly',
-    'formlyBootstrap',
-    'ui.router',
-    'smart-table',
-    'lbServices',
-    'ui.tinymce'
-]);
+(function() {
+    'use strict';
+
+    angular
+        .module('<%= moduleName %>', [
+            'ngFabForm',
+            'formly',
+            'formlyBootstrap',
+            'ui.router',
+            'smart-table',
+            'lbServices',
+            'ui.tinymce']);
+})();

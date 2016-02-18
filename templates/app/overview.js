@@ -6,28 +6,30 @@
  * Controller of the <%= moduleName %>
  */
 
-angular.module('<%= moduleName %>')
-    .controller('<%= classedName %><%= nameSuffix %>', function myFunc($scope, <%= modelServiceName %>) {
-        'use strict';
+(function() {
+    'use strict';
 
+    angular
+        .module('<%= moduleName %>')
+        .controller('<%= classedName %><%= nameSuffix %>', <%= classedName %><%= nameSuffix %>);
+
+    /* @ngInject */
+    function <%= classedName %><%= nameSuffix %>(<%= modelServiceName %>) {
+        var vm = this;
         var ModelService = <%= modelServiceName %>;
 
-    //.controller('<%= classedName %><%= nameSuffix %>', function myFunc($scope, TestModel) {
-    //    'use strict';
-    //
-    //    var ModelService = TestModel;
         var filter = {filter: {include: 'user'}};
 
         function loadModel() {
-            $scope.rowCollection = ModelService.find();
+            vm.rowCollection = ModelService.find();
         }
 
         //remove to the real data holder
-        $scope.removeItem = function removeItem(row) {
-            var index = $scope.rowCollection.indexOf(row);
+        vm.removeItem = function removeItem(row) {
+            var index = vm.rowCollection.indexOf(row);
 
             if (index !== -1) {
-                $scope.rowCollection.splice(index, 1);
+                vm.rowCollection.splice(index, 1);
 
                 return ModelService.deleteById({id: row.id})
                     .$promise
@@ -41,4 +43,5 @@ angular.module('<%= moduleName %>')
 
         // INIT
         loadModel();
-    });
+    }
+})();

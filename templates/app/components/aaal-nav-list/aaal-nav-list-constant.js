@@ -6,10 +6,13 @@
  *
  */
 
-'use strict';
+(function() {
+    'use strict';
 
-angular.module('<%= moduleName %>')
-    .constant('aaalNavListConstant',
-    [
-        <%- navConstants %>
-    ]);
+    angular
+        .module('<%= moduleName %>')
+        .constant('aaalNavListConstant',
+            [
+                //<%- navConstants %>
+            ]);
+})();

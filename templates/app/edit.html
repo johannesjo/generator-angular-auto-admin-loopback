@@ -8,14 +8,14 @@
         </button>
         <button type="button"
                 ng-if="vm.model.id"
-                ui-sref="<%=viewStateFull%>({id:model.id})"
+                ui-sref="<%=viewStateFull%>({id:vm.model.id})"
                 class="btn btn-default">
             <i class="glyphicon glyphicon-play"></i>
             View
         </button>
     </div>
 
-    <h2>{{ model.id }} {{ model.title||model.name }} </h2>
+    <h2>{{ vm.model.id }} {{ vm.model.title||vm.model.name }} </h2>
 
     <form ng-submit="vm.createOrUpdate()"
           name="vm.form"

@@ -7,9 +7,15 @@
  * Routes module. All app states are defined here.
  */
 
-angular.module('<%= moduleName %>')
-    .config(function($stateProvider) {
-        'use strict';
+(function() {
+    'use strict';
+
+    angular
+        .module('<%= moduleName %>')
+        .config(routerHelperProvider);
+
+    /* @ngInject */
+    function routerHelperProvider($stateProvider) {
 
         var AAAL_BASE_STATE = '<%= baseState %>';
         var aaalBaseWithoutDot = AAAL_BASE_STATE.substring(0, AAAL_BASE_STATE.length - 1);
@@ -21,5 +27,6 @@ angular.module('<%= moduleName %>')
                 template: '<main ui-view></main>'
             })
             /* STATES-NEEDLE - DO NOT REMOVE THIS */;
+    }
+})();
 
-    });

@@ -7,13 +7,13 @@
             </i> Back to overview
         </button>
         <button type="button"
-                ui-sref="<%=editStateFull%>({id:model.id})"
+                ui-sref="<%=editStateFull%>({id:vm.model.id})"
                 class="btn btn-info">
             <i class="glyphicon glyphicon-edit">
             </i> Edit
         </button>
     </div>
 
-    <h2>{{ model.id }} {{ model.name || model.title }} </h2>
-    <pre class="code">{{ model|json }}</pre>
+    <h2>{{ vm.model.id }} {{ vm.model.name || vm.model.title }} </h2>
+    <pre class="code">{{ vm.model|json }}</pre>
 </div>

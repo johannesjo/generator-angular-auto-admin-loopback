@@ -5,17 +5,21 @@
  * # <%= classedName %>Ctrl
  * Controller of the <%= moduleName %>
  */
-angular.module('<%= moduleName %>')
-    .controller('<%= classedName %><%= nameSuffix %>', function myFunc($scope, $state, <%= modelServiceName %>) {
-        'use strict';
 
+(function() {
+    'use strict';
+
+    angular
+        .module('<%= moduleName %>')
+        .controller('<%= classedName %><%= nameSuffix %>', <%= classedName %><%= nameSuffix %>);
+
+    /* @ngInject */
+    function <%= classedName %><%= nameSuffix %>($scope, $state, <%= modelServiceName %>) {
+        var vm = this;
         var ModelService = <%= modelServiceName %>;
-    //
-    //.controller('<%= classedName %><%= nameSuffix %>', function myFunc($scope, $state, TestModel) {
-    //    'use strict';
-        //var ModelService = TestModel;
 
         if ($state.params.id) {
-            $scope.model = ModelService.findById({id: $state.params.id});
+            vm.model = ModelService.findById({id: $state.params.id});
         }
-    });
+    }
+})();
