@@ -100,6 +100,7 @@ module.exports = yeoman.Base.extend({
         var requiredComponents = [
             'angular-ui-router',
             'ng-fab-form',
+            'ngtoast',
             'angular-schema-form',
             'angular-smart-table',
             'ui.bootstrap',

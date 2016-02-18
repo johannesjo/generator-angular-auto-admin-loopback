@@ -14,6 +14,7 @@
     angular
         .module('<%= moduleName %>', [
             'ngFabForm',
+            'ngToast',
             'schemaForm',
             'ui.router',
             'smart-table',
