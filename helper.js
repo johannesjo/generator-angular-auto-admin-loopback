@@ -3,10 +3,20 @@ var path = require('path');
 var fs = require('fs');
 var chalk = require('chalk');
 
-exports.STATE_NEEDLE = '/* STATES-NEEDLE - DO NOT REMOVE THIS */';
+var STATE_NEEDLE = '/* STATES-NEEDLE - DO NOT REMOVE THIS */';
+
+module.exports = {
+    STATE_NEEDLE: STATE_NEEDLE,
+    addToFile: addToFile,
+    injectRoute: injectRoute,
+    simpleObjectToString: simpleObjectToString,
+    getModelData: getModelData,
+    createModelDefinitions: createModelDefinitions
+};
+
 
 // inspired by https://github.com/cgross/generator-cg-angular/blob/master/utils.js
-exports.addToFile = function(filename, lineToAdd, beforeMarker) {
+function addToFile(filename, lineToAdd, beforeMarker) {
     try {
         var fullPath = path.resolve(process.cwd(), filename);
         var fileSrc = fs.readFileSync(fullPath, 'utf8');
@@ -21,9 +31,9 @@ exports.addToFile = function(filename, lineToAdd, beforeMarker) {
     } catch (e) {
         throw e;
     }
-};
+}
 
-exports.injectRoute = function(routesFile, name, url, tplUrl, ctrl, that) {
+function injectRoute(routesFile, name, url, tplUrl, ctrl, that) {
     var IND = '    ';
     var template = tplUrl ? ',\n' + IND + IND + IND + IND + 'templateUrl: \'' + tplUrl + '\'' : '';
     ctrl = ctrl ? ',\n' + IND + IND + IND + IND + 'controller: \'' + ctrl + '\'' : '';
@@ -36,13 +46,10 @@ exports.injectRoute = function(routesFile, name, url, tplUrl, ctrl, that) {
         ctrlAs +
         template +
         '\n' + IND + IND + IND + '})';
-    exports.addToFile(routesFile, code, exports.STATE_NEEDLE);
+    addToFile(routesFile, code, STATE_NEEDLE);
 
     that.log.writeln(chalk.green(' updating') + ' %s', path.basename(routesFile));
-};
-
-
-exports.simpleObjectToString = simpleObjectToString;
+}
 
 
 function simpleObjectToString(obj, startIndent) {
@@ -115,3 +122,25 @@ function simpleObjectToString(obj, startIndent) {
     }
 }
 
+function getModelData(modelDir) {
+    // read model definitions
+    var modelDefinitions = [];
+    console.log(__dirname);
+    console.log(modelDir);
+
+    var files = fs.readdirSync(modelDir);
+    for (var i in files) {
+        var filename = files[i];
+        // check if json
+        if (filename.substr(filename.lastIndexOf('.') + 1) === 'json') {
+            var modelDefinition = require(modelDir + '/' + filename);
+            modelDefinitions.push(modelDefinition);
+        }
+    }
+    return modelDefinitions;
+}
+
+
+function createModelDefinitions() {
+
+}
