@@ -27,10 +27,13 @@ exports.injectRoute = function(routesFile, name, url, tplUrl, ctrl, that) {
     var IND = '    ';
     var template = tplUrl ? ',\n' + IND + IND + IND + IND + 'templateUrl: \'' + tplUrl + '\'' : '';
     ctrl = ctrl ? ',\n' + IND + IND + IND + IND + 'controller: \'' + ctrl + '\'' : '';
+    var ctrlAs = ',\n' + IND + IND + IND + IND + 'controllerAs: \'vm\'';
+
     var code = '' +
         '.state(AAAL_BASE_STATE + \'' + name + '\', {' +
         '\n' + IND + IND + IND + IND + 'url: \'' + url + '\'' +
         ctrl +
+        ctrlAs +
         template +
         '\n' + IND + IND + IND + '})';
     exports.addToFile(routesFile, code, exports.STATE_NEEDLE);
