@@ -71,7 +71,7 @@ module.exports = yeoman.Base.extend({
         this.modelDefinitionsStr = helper.createModelDefinitionsStr(this.destinationPath(this.pathToModels));
 
         this.template('app/global-services/aaal-model-definitions-constant.js', this.dirs.app + '/' + this.dirs.basePath + '/global-services/aaal-model-definitions-constant.js');
-        this.template('app/global-services/aaal-to-form-schema-f.js', this.dirs.app + '/' + this.dirs.basePath + '/global-services/aaal-to-form-schema-f.js');
+        this.template('app/global-services/aaal-to-schema-form-f.js', this.dirs.app + '/' + this.dirs.basePath + '/global-services/aaal-to-schema-form-f.js');
 
     },
 
@@ -100,6 +100,7 @@ module.exports = yeoman.Base.extend({
         var requiredComponents = [
             'angular-ui-router',
             'ng-fab-form',
+            'angular-schema-form',
             'angular-formly',
             'angular-formly-templates-bootstrap',
             'angular-smart-table',

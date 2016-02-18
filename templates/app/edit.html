@@ -16,22 +16,25 @@
     </div>
 
     <h2>{{ vm.model.id }} {{ vm.model.title||vm.model.name }} </h2>
+    <form sf-schema="vm.schema"
+          sf-form="vm.form"
+          sf-model="vm.model"
+          ng-submit="vm.createOrUpdate()"></form>
+    <!--<form ng-submit="vm.createOrUpdate()"-->
+    <!--name="vm.form"-->
+    <!--novalidate>-->
+    <!--<formly-form model="vm.model"-->
+    <!--fields="vm.fields"-->
+    <!--options="vm.options"-->
+    <!--form="vm.form">-->
+    <!--<button type="submit"-->
+    <!--class="btn btn-primary submit-button">-->
+    <!--<i class="glyphicon glyphicon-save"></i>-->
+    <!--Save-->
+    <!--</button>-->
 
-    <form ng-submit="vm.createOrUpdate()"
-          name="vm.form"
-          novalidate>
-        <formly-form model="vm.model"
-                     fields="vm.fields"
-                     options="vm.options"
-                     form="vm.form">
-            <button type="submit"
-                    class="btn btn-primary submit-button">
-                <i class="glyphicon glyphicon-save"></i>
-                Save
-            </button>
-
-        </formly-form>
-    </form>
+    <!--</formly-form>-->
+    <!--</form>-->
     <h3>Model Data</h3>
     <pre>{{vm.model | json}}</pre>
 </div>

@@ -14,9 +14,10 @@
         .controller('<%= classedName %><%= nameSuffix %>', <%= classedName %><%= nameSuffix %>);
 
     /* @ngInject */
-    function <%= classedName %><%= nameSuffix %>($state, <%= modelServiceName %>) {
+    function <%= classedName %><%= nameSuffix %>($state, ngToast, aaalToSchemaForm, <%= modelServiceName %>) {
         var vm = this;
         var ModelService = <%= modelServiceName %>;
+
 
         function postSave() {
             ngToast.create('Saved');
@@ -27,10 +28,17 @@
             vm.model = ModelService.findById({id: $state.params.id});
         }
 
-        //form field definition
-        vm.fields = <%- formlyFields %>;
+        //form and schema definition
+        vm.schema = aaalToSchemaForm('<%= modelServiceName %>');
+        vm.form = [
+            '*',
+            {
+                type: 'submit',
+                title: 'Save'
+            }
+        ];
 
-        vm.createOrUpdate = function($scope, $state, ngToast, <%= modelServiceName %>) {
+        vm.createOrUpdate = function() {
             // update
             if (vm.model.id) {
                 var modelInstance = new ModelService(vm.model);

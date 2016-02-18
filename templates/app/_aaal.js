@@ -16,6 +16,7 @@
             'ngFabForm',
             'formly',
             'formlyBootstrap',
+            'schemaForm',
             'ui.router',
             'smart-table',
             'lbServices',
