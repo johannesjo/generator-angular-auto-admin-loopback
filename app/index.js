@@ -101,8 +101,6 @@ module.exports = yeoman.Base.extend({
             'angular-ui-router',
             'ng-fab-form',
             'angular-schema-form',
-            'angular-formly',
-            'angular-formly-templates-bootstrap',
             'angular-smart-table',
             'ui.bootstrap',
             'angular-ui-tinymce'
