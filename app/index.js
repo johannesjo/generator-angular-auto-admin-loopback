@@ -66,6 +66,15 @@ module.exports = yeoman.Base.extend({
         crudGen.createFiles(this, this.pathToModels);
     },
 
+    copyGlobalServices: function() {
+        // tpl vars for constants
+        this.modelDefinitionsStr = helper.createModelDefinitionsStr(this.destinationPath(this.pathToModels));
+
+        this.template('app/global-services/aaal-model-definitions-constant.js', this.dirs.app + '/' + this.dirs.basePath + '/global-services/aaal-model-definitions-constant.js');
+        this.template('app/global-services/aaal-to-form-schema-f.js', this.dirs.app + '/' + this.dirs.basePath + '/global-services/aaal-to-form-schema-f.js');
+
+    },
+
     copyComponents: function() {
         // create tpl vars
         var dirs = this.dirs;

@@ -11,7 +11,7 @@ module.exports = {
     injectRoute: injectRoute,
     simpleObjectToString: simpleObjectToString,
     getModelData: getModelData,
-    createModelDefinitions: createModelDefinitions
+    createModelDefinitionsStr: createModelDefinitionsStr
 };
 
 
@@ -125,8 +125,6 @@ function simpleObjectToString(obj, startIndent) {
 function getModelData(modelDir) {
     // read model definitions
     var modelDefinitions = [];
-    console.log(__dirname);
-    console.log(modelDir);
 
     var files = fs.readdirSync(modelDir);
     for (var i in files) {
@@ -141,6 +139,19 @@ function getModelData(modelDir) {
 }
 
 
-function createModelDefinitions() {
-
+function createModelDefinitionsStr(modelDir) {
+    var modelDefinitionsArray = getModelData(modelDir);
+    var modelDefinitionsObject = {};
+    for (var i = 0; i < modelDefinitionsArray.length; i++) {
+        var model = modelDefinitionsArray[i];
+        modelDefinitionsObject[model.name] = {
+            name: model.name,
+            properties: model.properties || {},
+            validations: model.validations || [],
+            relations: model.relations || {},
+            acls: model.acls || [],
+            mixins: model.mixins || []
+        };
+    }
+    return simpleObjectToString(modelDefinitionsObject, '        ');
 }
