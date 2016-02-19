@@ -294,7 +294,7 @@ module.exports = yeoman.Base.extend({
         }
 
         // inject all files after creation
-        if (!this.options.skipInject) {
+        if (this.options.inject) {
             this.spawnCommand('gulp', ['injectAll']);
         }
     }
