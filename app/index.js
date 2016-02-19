@@ -115,11 +115,6 @@ module.exports = yeoman.Base.extend({
             this.config.save();
             this.spawnCommand('bower', requiredComponents);
         });
-    },
-    postRun: function() {
-        this.on('dependenciesInstalled', function() {
-            this.spawnCommand('gulp', ['serve']);
-        });
     }
 });
 
