@@ -104,7 +104,8 @@ module.exports = yeoman.Base.extend({
             'angular-schema-form',
             'angular-smart-table',
             'ui.bootstrap',
-            'angular-ui-tinymce'
+            'angular-ui-tinymce',
+            'angular-schema-form-datepicker'
         ];
         requiredComponents.unshift('install');
         requiredComponents.push('--save');
