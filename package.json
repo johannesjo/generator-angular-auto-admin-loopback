@@ -6,18 +6,15 @@
     "yeoman-generator",
     "scaffold",
     "front-end",
-    "app",
-    "angular",
-    "modular",
-    "sass",
-    "scss",
-    "cordova",
-    "gulp"
+    "loopback",
+    "strongloop",
+    "gulp",
+    "angularjs"
   ],
   "author": "johannesjo",
   "repository": {
     "type": "git",
-    "url": "https://github.com/johannesjo/generator-modular-angular.git"
+    "url": "https://github.com/johannesjo/generator-angular-auto-admin-loopback"
   },
   "dependencies": {
     "chalk": "^1.0.0",
@@ -41,23 +38,12 @@
   },
   "files": [
     "app",
-    "c",
-    "constant",
-    "d",
-    "decorator",
-    "f",
-    "filter",
-    "m",
-    "mod",
-    "p",
-    "route",
-    "r",
-    "sr",
-    "s",
+    "edit",
+    "overview",
+    "view",
     "templates",
-    "script-base.js",
-    "util.js",
-    "helper.js",
+    "default-settings.js",
+    "crud-gen.js",
     "default-settings.js",
     "sub-generator-base.js"
   ],
