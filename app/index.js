@@ -97,24 +97,26 @@ module.exports = yeoman.Base.extend({
     },
 
     install: function packageFiles() {
-        var requiredComponents = [
-            'angular-ui-router',
-            'ng-fab-form',
-            'ngtoast',
-            'angular-schema-form',
-            'angular-smart-table',
-            'ui.bootstrap',
-            'angular-ui-tinymce',
-            'angular-schema-form-datepicker'
-        ];
-        requiredComponents.unshift('install');
-        requiredComponents.push('--save');
+        if (this.installComponents) {
+            var requiredComponents = [
+                'angular-ui-router',
+                'ng-fab-form',
+                'ngtoast',
+                'angular-schema-form',
+                'angular-smart-table',
+                'ui.bootstrap',
+                'angular-ui-tinymce',
+                'angular-schema-form-datepicker'
+            ];
+            requiredComponents.unshift('install');
+            requiredComponents.push('--save');
 
-        this.on('end', function() {
-            //save configuration
-            this.config.save();
-            this.spawnCommand('bower', requiredComponents);
-        });
+            this.on('end', function() {
+                //save configuration
+                this.config.save();
+                this.spawnCommand('bower', requiredComponents);
+            });
+        }
     }
 });
 
