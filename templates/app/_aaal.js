@@ -12,11 +12,11 @@
 
     angular
         .module('<%= moduleName %>', [
-            'ngFabForm',
             'ngToast',
             'schemaForm',
             'ui.router',
             'smart-table',
             'lbServices',
+            'ngStorage',
             'ui.tinymce']);
 })();
