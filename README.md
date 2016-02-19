@@ -93,6 +93,37 @@
 
 9. Navigate to http://localhost:3000/index.html#/login log yourself in with one of your loopback users and enjoy.
 
+10. (optional) add proxy to use access api from gulp serve for development. 
+
+        ```
+        # cd to frontend
+        cd client
+        # install proxy middleware
+        npm install -D proxy-middleware
+        
+        #######################################
+        # add the following to the tasks/dev.js
+        var proxy = require('proxy-middleware');
+        var url = require('url');
+        // ...
+        gulp.task('browserSync', function() {
+            var proxyOptions = url.parse('http://localhost:3000/api');
+            proxyOptions.route = '/api';
+        
+            browserSync({
+                server: {
+                    baseDir: config.base,
+                    livereload: true,
+                    middleware: [proxy(proxyOptions)]
+                }
+            });
+        });
+        #######################################
+        
+        # run gulp or gulp serve for dev
+        gulp serve
+        ```
+
 ## adding it to your existing angular frontend
 1 .Install generator
         
