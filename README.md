@@ -125,6 +125,7 @@
         ```
 
 ## adding it to your existing angular frontend
+
 1 .Install generator
         
         ```
