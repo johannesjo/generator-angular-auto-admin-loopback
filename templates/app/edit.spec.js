@@ -18,6 +18,6 @@ describe('Controller: <%=classedName%><%=nameSuffix%>', function() {
     }));
 
     it('should ...', function() {
-        //expect(true).toBe(<%=testPassOnDefault%>);
+        expect(true).toBe(<%=testPassOnDefault%>);
     });
 });
