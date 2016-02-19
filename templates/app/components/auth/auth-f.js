@@ -5,62 +5,60 @@
  * # Auth
  * Factory in the <%=moduleName%>.
  */
-angular.module('<%=moduleName%>')
-    .factory('Auth', function (User, $rootScope, $state, $localStorage)
-    {
-        'use strict';
+(function() {
+    'use strict';
 
-        function login(email, password)
-        {
-            return User
-                .login({
-                    rememberMe: true
-                }, {
-                    email: email, password: password
-                })
-                .$promise
-                .then(function (response)
-                {
-                    $rootScope.currentUser = $localStorage.currentUser = {
-                        id: response.user.id,
-                        tokenId: response.id,
-                        email: email
-                    };
+    angular
+        .module('<%=moduleName%>')
+        .factory('Auth', function(User, $rootScope, $state, $localStorage) {
 
-                    if ($state.nextAfterLogin) {
-                        $state.go($state.nextAfterLogin.name, $state.nextAfterLoginParams);
-                        $state.nextAfterLogin = null;
-                    } else {
-                        $state.go('private.dashboard');
-                    }
-                });
-        }
+            function login(email, password) {
+                return User
+                    .login({
+                        rememberMe: true
+                    }, {
+                        email: email, password: password
+                    })
+                    .$promise
+                    .then(function(response) {
+                        $rootScope.currentUser = $localStorage.currentUser = {
+                            id: response.user.id,
+                            tokenId: response.id,
+                            email: email
+                        };
 
-        function logout()
-        {
-            return User
-                .logout()
-                .$promise
-                .then(function ()
-                {
-                    $rootScope.currentUser = $localStorage.currentUser = null;
-                    $state.go('login');
-                });
-        }
+                        if ($state.nextAfterLogin) {
+                            $state.go($state.nextAfterLogin.name, $state.nextAfterLoginParams);
+                            $state.nextAfterLogin = null;
+                        } else {
+                            $state.go('private.dashboard');
+                        }
+                    });
+            }
 
-        function register(email, password)
-        {
-            return User
-                .create({
-                    email: email,
-                    password: password
-                })
-                .$promise;
-        }
+            function logout() {
+                return User
+                    .logout()
+                    .$promise
+                    .then(function() {
+                        $rootScope.currentUser = $localStorage.currentUser = null;
+                        $state.go('login');
+                    });
+            }
 
-        return {
-            login: login,
-            logout: logout,
-            register: register
-        };
-    });
+            function register(email, password) {
+                return User
+                    .create({
+                        email: email,
+                        password: password
+                    })
+                    .$promise;
+            }
+
+            return {
+                login: login,
+                logout: logout,
+                register: register
+            };
+        });
+})();
