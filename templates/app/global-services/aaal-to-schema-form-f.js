@@ -15,7 +15,8 @@
 
     var PROPERTIES_TO_COPY = [
         'type',
-        'required'
+        'required',
+        'format'
     ];
     var PROPERTIES_TO_TRANSFORM = [];
 
@@ -35,6 +36,7 @@
             };
 
             schema.properties = processModelProperties(model.properties, schema.properties);
+            console.log(schema.properties);
 
             return schema;
         }
@@ -81,10 +83,14 @@
             var schemaDef = {};
             for (var i = 0; i < arrayTypeDefinition.length; i++) {
                 var def = arrayTypeDefinition[i];
-                if (def === 'string') {
+                if (def === 'object') {
+                    schemaDef.type = 'object';
+                    schemaDef.title = 'type \'object\' cannot be generated, use form definition';
+                } else if (def === 'string') {
                     schemaDef.type = 'string';
                     break;
                 } else if (typeof def === 'object') {
+                    // TODO this is still a little buggy with loopback
                     if (!schemaDef.type) {
                         schemaDef.type = 'object';
                         schemaDef.properties = {};
