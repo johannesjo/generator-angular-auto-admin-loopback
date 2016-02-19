@@ -45,7 +45,7 @@ module.exports = yeoman.Base.extend({
         // the state name is the argument
         this.stateName = this.name + this.subGenCfg.stateSuffix;
         // template vars
-        this.modelServiceName = this.options.model.name;
+        this.modelServiceName = _s.classify(this.options.model.name);
         this.modelOptions = helper.simpleObjectToString(this.options.model, '        ');
         this.overviewStateFull = this.baseState + this.name + this.subGenerators.overview.stateSuffix;
         this.editStateFull = this.baseState + this.name + this.subGenerators.edit.stateSuffix;
