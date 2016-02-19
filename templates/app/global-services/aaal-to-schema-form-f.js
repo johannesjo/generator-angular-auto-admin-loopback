@@ -18,9 +18,15 @@
         'required',
         'format'
     ];
-    var PROPERTIES_TO_TRANSFORM = [];
+    var PROPERTIES_TO_TRANSFORM = [
+        'date'
+    ];
 
-    var transformations = {};
+    var transformations = {
+        date: function() {
+            return 'string';
+        }
+    };
 
 
     /* @ngInject */
@@ -44,6 +50,12 @@
 
         function processPropertyProperties(modelProperty) {
             var schemaPropertyProperties = {};
+
+            // handle dates
+            if (modelProperty.type === 'date') {
+                // ..
+            }
+
             for (var key in modelProperty) {
                 if (modelProperty.hasOwnProperty(key)) {
                     var modelPropertyProperty = modelProperty[key];
