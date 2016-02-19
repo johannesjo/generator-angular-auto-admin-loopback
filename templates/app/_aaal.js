@@ -6,7 +6,6 @@
  *
  * Main module of the application.
  */
-'use strict';
 
 (function() {
     'use strict';

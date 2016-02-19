@@ -18,8 +18,6 @@
         var vm = this;
         var ModelService = <%= modelServiceName %>;
 
-        var filter = {filter: {include: 'user'}};
-
         function loadModel() {
             vm.rowCollection = ModelService.find();
         }
