@@ -3,11 +3,16 @@ login {
 }
 
 .login-page {
-    background: linear-gradient(to bottom, #2187ed 0%, #6eade5 100%);
+    position: absolute;
+    background: linear-gradient(to bottom, rgba(46, 104, 240, 0.44) 0%, #6eade5 100%);
     height: 100%;
     width: 100%;
-    
-    login {
 
+    login {
+        z-index: 20;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
     }
 }
