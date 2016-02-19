@@ -106,7 +106,8 @@ module.exports = yeoman.Base.extend({
                 'ui.bootstrap',
                 'angular-ui-tinymce',
                 'ngstorage',
-                'angular-schema-form-datepicker'
+                'angular-schema-form-datepicker',
+                'bootstrap-css-only'
             ];
             requiredComponents.unshift('install');
             requiredComponents.push('--save');
