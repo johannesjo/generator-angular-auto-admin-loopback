@@ -126,7 +126,7 @@
 
 ## adding it to your existing angular frontend
 
-1 .Install generator
+1. Install generator
         
         ```
         npm install -g generator-aaal
