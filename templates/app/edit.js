@@ -17,6 +17,7 @@
     function <%= classedName %><%= nameSuffix %>($state, ngToast, aaalToSchemaForm, <%= modelServiceName %>) {
         var vm = this;
         var ModelService = <%= modelServiceName %>;
+        vm.modelName = '<%= modelServiceName %>';
 
         //form and schema definition
         vm.schema = aaalToSchemaForm('<%= modelServiceName %>');
@@ -30,9 +31,10 @@
 
         // load or create new instance
         if ($state.params.id) {
-            vm.model = ModelService.findById({id: $state.params.id})
+            ModelService.findById({id: $state.params.id})
                 .$promise
-                .then(function() {
+                .then(function(model) {
+                    vm.model = model;
                 }, function() {
                     ngToast.danger('Could not load model #' + $state.params.id);
                     $state.go('private.TestModelList');

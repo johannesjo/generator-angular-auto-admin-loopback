@@ -15,7 +15,7 @@
         </button>
     </div>
 
-    <h2>{{ vm.model.id }} {{ vm.model.title||vm.model.name }} </h2>
+    <h2>{{ vm.model.id && 'Edit '+vm.modelName+' #'+vm.model.id||'Create new ' +vm.modelName }} </h2>
     <form sf-schema="vm.schema"
           sf-form="vm.form"
           sf-model="vm.model"
