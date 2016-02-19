@@ -1,7 +1,7 @@
 {
   "name": "generator-aaal",
-  "version": "1.0.49",
-  "description": "A truly modular yeoman generator for AngularJS all device apps.",
+  "version": "0.0.1",
+  "description": "An crud interface generator for loopback and angular.",
   "keywords": [
     "yeoman-generator",
     "scaffold",
