@@ -30,7 +30,7 @@
                 }
             });
         });
-    ;
+
 
     /* @ngInject */
     function routerHelperProvider($stateProvider, $urlRouterProvider) {
