@@ -48,14 +48,14 @@
             .state(aaalBaseWithoutDot, {
                 url: '/private',
                 abstract: true,
-                template: '<main ui-view></main>',
+                template: '<aaal-header></aaal-header><main ui-view class="container"></main>',
                 data: {
                     authenticate: true
                 }
             })
             .state(AAAL_BASE_STATE + 'dashboard', {
                 url: '/dashboard',
-                template: '<div>Hello hello!</div>'
+                template: '<div>Hello!</div>'
             })
 
             /* STATES-NEEDLE - DO NOT REMOVE THIS */;
