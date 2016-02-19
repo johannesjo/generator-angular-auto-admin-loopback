@@ -30,7 +30,13 @@
 
         // load or create new instance
         if ($state.params.id) {
-            vm.model = ModelService.findById({id: $state.params.id});
+            vm.model = ModelService.findById({id: $state.params.id})
+                .$promise
+                .then(function() {
+                }, function() {
+                    ngToast.danger('Could not load model #' + $state.params.id);
+                    $state.go('private.TestModelList');
+                });
         } else {
             vm.model = {};
         }
