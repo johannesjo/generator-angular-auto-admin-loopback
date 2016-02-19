@@ -19,13 +19,9 @@
         'format'
     ];
     var PROPERTIES_TO_TRANSFORM = [
-        'date'
     ];
 
     var transformations = {
-        date: function() {
-            return 'string';
-        }
     };
 
 
@@ -51,11 +47,6 @@
         function processPropertyProperties(modelProperty) {
             var schemaPropertyProperties = {};
 
-            // handle dates
-            if (modelProperty.type === 'date') {
-                // ..
-            }
-
             for (var key in modelProperty) {
                 if (modelProperty.hasOwnProperty(key)) {
                     var modelPropertyProperty = modelProperty[key];
@@ -73,6 +64,12 @@
                 schemaPropertyProperties.type = 'array';
                 delete schemaPropertyProperties.required;
                 schemaPropertyProperties.items = processArrayDefinitions(modelProperty.type);
+            }
+
+            // handle dates
+            if (modelProperty.type === 'date') {
+                schemaPropertyProperties.type = 'string';
+                schemaPropertyProperties.format = 'date';
             }
 
             return schemaPropertyProperties;
