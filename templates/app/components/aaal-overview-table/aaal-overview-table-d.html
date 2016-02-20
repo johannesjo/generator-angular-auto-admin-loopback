@@ -4,7 +4,7 @@
     <thead>
         <tr>
             <!-- just make it large enough -->
-            <th colspan="22">
+            <th colspan="99">
                 <input st-search=""
                        class="form-control"
                        placeholder="Search ..."
@@ -36,6 +36,9 @@
                     <i class="glyphicon glyphicon-play"></i>
                 </a>
             </td>
+        </tr>
+        <tr ng-if="!vm.displayedCollection|| !vm.displayedCollection.length">
+            <td colspan="99">No entries yet. Create the first one!</td>
         </tr>
     </tbody>
 </table>
