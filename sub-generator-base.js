@@ -15,9 +15,6 @@ module.exports = yeoman.Base.extend({
         yeoman.Base.apply(this, arguments);
         this.argument('name', {type: String, required: true});
 
-        // define global options
-        this.option('openInEditor');
-
         // set all the different name versions to be used in the templates
         this.setModuleNames(this.name);
 
@@ -288,15 +285,6 @@ module.exports = yeoman.Base.extend({
      * things done after all files are created
      */
     afterFileCreationHook: function() {
-        // run favorite ide (first to smooth the experiance)
-        if (this.options.openInEditor) {
-            this.spawnCommand(this.editorCommand, this.createdFiles);
-        }
-
-        // inject all files after creation
-        if (this.options.inject) {
-            this.spawnCommand('gulp', ['injectAll']);
-        }
     }
 });
 
