@@ -1,5 +1,7 @@
 # generator aaal (angular auto admin loopback)
-`generator-aaal` is a Yeoman generator, which provides you with a angular based crud-interface with is automatically created based on your model definitions. You can drop it in in your existing loopback app, even drop it in your existing angular frontend app.
+`generator-aaal` is a Yeoman generator, which provides you with a angular based crud-interface with is automatically created based on your model definitions. You can drop it in in your existing loopback app, even drop it in your existing angular frontend app. 
+
+The interface `generator-aaal` provides relies heavily on [angular schema forms](http://schemaform.io/). So if you want to customize your forms, you might want [to have a look at their docs](https://github.com/json-schema-form/angular-schema-form/blob/master/docs/index.md).
 
 ## getting started
 [Check out the pre built example](https://github.com/johannesjo/angular-auto-admin-looopback)! 
@@ -32,7 +34,7 @@
 
         ```
         # install bower deps
-        bower install -S ngtoast angular-schema-form angular-smart-table ui.bootstrap angular-ui-tinymce ngstorage angular-schema-form-datepicker bootstrap-css-only
+        bower install -S ngtoast angular-schema-form angular-smart-table ui.bootstrap ngstorage angular-schema-form-datepicker angular-schema-form-tinymce bootstrap-css-only
         # drop in aaal
         yo aaal
         ```
@@ -142,7 +144,7 @@
         
         ```
         # install bower deps
-        bower install -S ngtoast angular-schema-form angular-smart-table ui.bootstrap angular-ui-tinymce ngstorage angular-schema-form-datepicker bootstrap-css-only
+        bower install -S ngtoast angular-schema-form angular-smart-table ui.bootstrap ngstorage angular-schema-form-datepicker angular-schema-form-tinymce bootstrap-css-only
         ```
         
 4. Inject all the files in your aaal directory and all the bower_components to your index.html.
@@ -166,3 +168,33 @@
         ```
 
 6. Have fun!
+
+
+## customizing your forms via form schema definition
+
+It's best to [check out the the examples of angular schema forms](http://schemaform.io/examples/bootstrap-example.html) for this. This can be easily added to the controller definition of the [your-model]-edit-ctrl.js. 
+
+## customizing your forms via model definitions
+
+Out of the box `generator-aaal` supports to declare additional formats for your model properties, you can provide via the format sub-property. Some example:
+
+
+```
+// common/models/another-model.json
+{
+  "name": "AnotherModel",
+  "base": "PersistedModel",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string",
+      "format": "html" // ==> will be edited in a tinymce editor instance
+    },
+    "someDate": {
+      "type": "date" // ==> will be automatically converted to a date input
+    }
+}
+
+```
