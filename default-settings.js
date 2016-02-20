@@ -35,7 +35,8 @@ module.exports = {
         app: 'app',
         basePath: 'scripts/aaal',
         routes: 'routes',
-        components: 'components'
+        components: 'components',
+        filters: 'global-filters'
     },
     subGenerators: {
         overview: {

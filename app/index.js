@@ -85,9 +85,11 @@ module.exports = yeoman.Base.extend({
         this.fullComponentsPath = dirs.basePath + '/' + dirs.components;
 
         var componentsRealPath = dirs.app + '/' + dirs.basePath + '/' + dirs.components;
+        var filtersRealPath = dirs.app + '/' + dirs.basePath + '/' + dirs.filters;
 
-        // copy components
+        // copy components and global filters
         this.directory('app/components', componentsRealPath);
+        this.directory('app/global-filters', filtersRealPath);
     },
 
     createLbServices: function() {

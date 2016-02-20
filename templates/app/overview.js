@@ -22,6 +22,15 @@
             vm.rowCollection = ModelService.find();
         }
 
+        /**
+         * you can add columns and add filters to them like so
+         * {name:'modelPropertyName': filter:'date:dd/MM/yy'}
+         */
+        vm.columns = [
+            'id',
+            'title'
+        ];
+
         //remove to the real data holder
         vm.removeItem = function removeItem(row) {
             var index = vm.rowCollection.indexOf(row);

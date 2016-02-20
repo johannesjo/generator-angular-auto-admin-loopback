@@ -1,0 +1,41 @@
+<table st-table="vm.displayedCollection"
+       st-safe-src="vm.rows"
+       class="table table-striped">
+    <thead>
+        <tr>
+            <!-- just make it large enough -->
+            <th colspan="22">
+                <input st-search=""
+                       class="form-control"
+                       placeholder="Search ..."
+                       type="text"/>
+            </th>
+        </tr>
+        <tr>
+            <th ng-repeat="col in vm.columns"
+                st-sort="{{(col.name||col)}}">{{(col.name||col)}}
+            </th>
+            <th>actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="row in vm.displayedCollection">
+            <td ng-repeat="col in vm.columns">{{row[(col.name||col)]|flexible:col.filter}}</td>
+            <td>
+                <button type="button"
+                        ng-click="vm.removeItem(row)"
+                        class="btn btn-sm btn-danger">
+                    <i class="glyphicon glyphicon-remove"></i>
+                </button>
+                <a ng-href="{{vm.$state.href(vm.editStateLink,{'id':row.id})}}"
+                   class="btn btn-sm btn-info">
+                    <i class="glyphicon glyphicon-edit"></i>
+                </a>
+                <a ng-href="{{vm.$state.href(vm.viewStateLink,{'id':row.id})}}"
+                   class="btn btn-sm btn-default">
+                    <i class="glyphicon glyphicon-play"></i>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>

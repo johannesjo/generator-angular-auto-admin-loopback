@@ -6,54 +6,9 @@
         </i> Add new item
     </button>
 
-    <table st-table="displayedCollection"
-           st-safe-src="vm.rowCollection"
-           class="table table-striped">
-        <thead>
-            <tr>
-                <th colspan="5">
-                    <input st-search=""
-                           class="form-control"
-                           placeholder="Search ..."
-                           type="text"/>
-                </th>
-            </tr>
-            <tr>
-                <th st-sort="id">id</th>
-                <th st-sort="title">title</th>
-                <th st-sort="createdAt"
-                    ng-if="vm.createdAt">createdAt
-                </th>
-                <th st-sort="updatedAt"
-                    ng-if="vm.updatedAt">updatedAt
-                </th>
-                <th style="text-align: right">actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="row in displayedCollection">
-                <td>{{row.id}}</td>
-                <td>{{row.name||row.title}}</td>
-                <td ng-if="vm.createdAt">{{row.createdAt|date}}</td>
-                <td ng-if="vm.updatedAt">{{row.updatedAt|date}}</td>
-                <td style="text-align: right">
-                    <button type="button"
-                            ng-click="vm.removeItem(row)"
-                            class="btn btn-sm btn-danger">
-                        <i class="glyphicon glyphicon-remove"></i>
-                    </button>
-                    <button type="button"
-                            ui-sref="<%=editStateFull%>({id:row.id})"
-                            class="btn btn-sm btn-info">
-                        <i class="glyphicon glyphicon-edit"></i>
-                    </button>
-                    <button type="button"
-                            ui-sref="<%=viewStateFull%>({id:row.id})"
-                            class="btn btn-sm btn-default">
-                        <i class="glyphicon glyphicon-play"></i>
-                    </button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    <aaal-overview-table columns="vm.columns"
+                         rows="vm.rowCollection"
+                         delete-fn="vm.removeItem"
+                         view-state-link="private.TestModelView"
+                         edit-state-link="private.TestModelEdit"></aaal-overview-table>
 </div>
