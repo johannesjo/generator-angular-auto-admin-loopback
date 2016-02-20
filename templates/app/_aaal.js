@@ -18,5 +18,6 @@
             'smart-table',
             'lbServices',
             'ngStorage',
-            'ui.tinymce']);
+            'schemaForm-tinymce'
+        ]);
 })();
