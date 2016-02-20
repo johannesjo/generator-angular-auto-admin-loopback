@@ -22,6 +22,9 @@
             vm.rowCollection = ModelService.find();
         }
 
+        vm.viewState = '<%= viewStateFull %>';
+        vm.editState = '<%= editStateFull %>';
+
         /**
          * you can add columns and add filters to them like so
          * {name:'modelPropertyName': filter:'date:dd/MM/yy'}

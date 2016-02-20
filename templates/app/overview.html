@@ -9,6 +9,6 @@
     <aaal-overview-table columns="vm.columns"
                          rows="vm.rowCollection"
                          delete-fn="vm.removeItem"
-                         view-state-link="private.TestModelView"
-                         edit-state-link="private.TestModelEdit"></aaal-overview-table>
+                         view-state-link="{{ vm.viewState }}"
+                         edit-state-link="{{ vm.editState }}"></aaal-overview-table>
 </div>

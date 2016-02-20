@@ -37,7 +37,7 @@
                     vm.model = model;
                 }, function() {
                     ngToast.danger('Could not load model #' + $state.params.id);
-                    $state.go('private.TestModelList');
+                    $state.go('<%= overviewStateFull %>');
                 });
         } else {
             vm.model = {};
