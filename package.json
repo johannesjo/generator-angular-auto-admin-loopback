@@ -45,7 +45,9 @@
     "default-settings.js",
     "crud-gen.js",
     "default-settings.js",
-    "sub-generator-base.js"
+    "sub-generator-base.js",
+    "helper.js",
+    "formly-converter.js"
   ],
   "devDependencies": {
     "coveralls": "^2.11.2",
