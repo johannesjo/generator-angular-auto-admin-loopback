@@ -11,7 +11,7 @@ The interface `generator-aaal` provides relies heavily on [angular schema forms]
 
         ```
         npm install -g strongloop bower yo
-        slc loopback 
+        slc loopback  # choose version 2.x and 'api-server'
         slc loopback:model yourFirstModel
         ```
 
@@ -25,10 +25,11 @@ The interface `generator-aaal` provides relies heavily on [angular schema forms]
 
         ```
         cd client
-        # create .yo-rc.json if not present
+        # create .yo-rc.json for the frontend if not present
         echo "{}" > .yo-rc.json
         yo moda my-admin
         ```
+ Choose `ui-router.js` and `angular-resource` from modules. Everything else is optional.
         
 4. Cancel gulp and drop in the aaal components
 
@@ -124,6 +125,12 @@ The interface `generator-aaal` provides relies heavily on [angular schema forms]
         
         # run gulp or gulp serve for dev
         gulp serve
+        ```
+
+## rebuilding your aaal backend interface after model changes
+Simply run:         
+        ```
+        yo aaal
         ```
 
 ## adding it to your existing angular frontend
