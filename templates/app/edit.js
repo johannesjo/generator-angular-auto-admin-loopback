@@ -17,10 +17,10 @@
     function <%= classedName %><%= nameSuffix %>($state, ngToast, aaalToSchemaForm, <%= modelServiceName %>) {
         var vm = this;
         var ModelService = <%= modelServiceName %>;
-        vm.modelName = '<%= modelServiceName %>';
+        vm.modelName = '<%= modelName %>';
 
         //form and schema definition
-        vm.schema = aaalToSchemaForm('<%= modelServiceName %>');
+        vm.schema = aaalToSchemaForm(vm.modelName);
         vm.form = [
             '*',
             {

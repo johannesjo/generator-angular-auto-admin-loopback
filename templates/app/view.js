@@ -17,7 +17,7 @@
     function <%= classedName %><%= nameSuffix %>($scope, $state, <%= modelServiceName %>) {
         var vm = this;
         var ModelService = <%= modelServiceName %>;
-        vm.modelName = '<%= modelServiceName %>';
+        vm.modelName = '<%= modelName %>';
 
         if ($state.params.id) {
             vm.model = ModelService.findById({id: $state.params.id});
