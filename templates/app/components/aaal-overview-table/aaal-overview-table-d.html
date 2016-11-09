@@ -23,7 +23,7 @@
             <td ng-repeat="col in vm.columns">{{row[(col.name||col)]|flexible:col.filter}}</td>
             <td>
                 <button type="button"
-                        ng-click="vm.removeItem(row)"
+                        ng-click="vm.deleteFn({row:row})"
                         class="btn btn-sm btn-danger">
                     <i class="glyphicon glyphicon-remove"></i>
                 </button>
