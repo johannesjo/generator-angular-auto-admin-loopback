@@ -71,6 +71,21 @@
                 schemaPropertyProperties.type = 'string';
                 schemaPropertyProperties.format = 'date';
             }
+            
+            // handle GeoPoint
+            if (modelProperty.type === 'GeoPoint') {
+                schemaPropertyProperties.type = 'object';
+                schemaPropertyProperties.properties = {
+                    lng : {
+                        "type": "number",
+                        "title": "Longitude",
+                    },
+                    lat : {
+                        "title": "Latitude",
+                        "type": "number",
+                    }
+                };
+            }
 
             return schemaPropertyProperties;
         }
