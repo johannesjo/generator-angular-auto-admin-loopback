@@ -1,6 +1,6 @@
 {
   "name": "generator-aaal",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "An crud interface generator for loopback and angular.",
   "keywords": [
     "yeoman-generator",
@@ -21,7 +21,7 @@
     "lodash": "^3.6.0",
     "underscore.string": "^3.0.3",
     "wiredep": "^2.2.2",
-    "yeoman-generator": "latest",
+    "yeoman-generator": "0.24.1",
     "yosay": "^1.0.3"
   },
   "engines": {
