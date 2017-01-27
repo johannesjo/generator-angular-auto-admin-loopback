@@ -3,6 +3,10 @@
 
 The interface `generator-aaal` provides relies heavily on [angular schema forms](http://schemaform.io/). So if you want to customize your forms, you might want [to have a look at their docs](https://github.com/json-schema-form/angular-schema-form/blob/master/docs/index.md).
 
+![Edit Screen](docs/edit.png)
+![Login Screen](docs/login.png)
+![Overview Screen](docs/overview.png)
+
 ## getting started
 [Check out the pre built example](https://github.com/johannesjo/angular-auto-admin-looopback)! 
 
@@ -96,7 +100,7 @@ The interface `generator-aaal` provides relies heavily on [angular schema forms]
 
 9. Navigate to http://localhost:3000/index.html#/login log yourself in with one of your loopback users and enjoy.
 
-10. (optional) add proxy to use access api from gulp serve for development. 
+10. (optional) add proxy to access api from gulp serve for development. 
 
         ```
         # cd to frontend
